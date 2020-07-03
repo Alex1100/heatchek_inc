@@ -7,7 +7,9 @@ const fs = require('fs');
 const debug = require('debug')('app:http');
 require('dotenv').config({path: path.join(__dirname, '../config/.env')});
 
+const routes = require('./routes/router');
 const app = express();
+
 let server;
 let privateKey;
 let certificate;
@@ -17,6 +19,8 @@ app.use(logger('dev'));
 app.use(bodyParser.json({limit: "10500mb"}));
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(debugReq);
+app.use('/api', routes);
+
 function debugReq(req, res, next){
   debug("params:", req.params);
   debug("query:", req.query);
@@ -25,7 +29,7 @@ function debugReq(req, res, next){
 };
 
 const startServer = () => {
-  if (process.env.SERVE_HTTPS === 'yes') {
+  if (process.env.SERVE_HTTPS === 'yes' && process.env.NODE_ENV !== "DEV") {
   	privateKey = fs.readFileSync(path.join(__dirname, '../heatchek-api.io.key')).toString();
   	certificate = fs.readFileSync(path.join(__dirname, '../heatchek-api.io.crt')).toString();
     options = { key: privateKey, cert: certificate};
