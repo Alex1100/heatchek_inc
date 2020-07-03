@@ -3,6 +3,7 @@ const logger = require('morgan');
 const bodyParser = require('body-parser');
 const path = require('path');
 const https = require('https');
+const fs = require('fs');
 const debug = require('debug')('app:http');
 require('dotenv').config({path: path.join(__dirname, '../config/.env')});
 
