@@ -6,6 +6,7 @@
 # Must Have
 X Create Employee DB Tables
 X Create Employee Authentication with Roles for ADMIN_EMPLOYEE and STANDARD_EMPLOYEE
+X Create basic auth flow for employee portal
 - Basic Landing Page to find and schedule more jobs
 - Create a way to View and Schedule jobs via Calendly integration
 - Need to be able to complete / mark jobs as completed, ignored, or cancelled
