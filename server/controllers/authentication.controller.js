@@ -10,7 +10,6 @@ const {
 } = require('../../database');
 
 const signup = async (req, res) => {
-  console.log("REACHES THIS ROUTE");
   try {
     const {
       firstName,
