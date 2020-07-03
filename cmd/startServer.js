@@ -1,6 +1,5 @@
 const { startServer } = require('../server');
 
-
 const startApp = () => {
   startServer();
 };
