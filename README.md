@@ -1,9 +1,5 @@
 
-# TODO
-
-
-// Employee Application
-# Must Have
+# Employee Application Must Have
 X Create Employee DB Tables
 X Create Employee Authentication with Roles for ADMIN_EMPLOYEE and STANDARD_EMPLOYEE
 X Create basic auth flow for employee portal
@@ -12,13 +8,12 @@ X Create basic auth flow for employee portal
 - Need to be able to complete / mark jobs as completed, ignored, or cancelled
 - Component to view job details aka (location of house, square footage, expected earnings, etc...)
 
-# Nice to Have
+# Employee Application Nice to Have
 - Notify when an employee has arrived at the job site, to have the system send an automated phone call or text message to the broker/owner
 - Landing Page with current scheduled jobs, and other relevant information, monthly earnings to date, pay-day date, link to completed jobs
 
 
-// Client Application
-# Must Have
+# Client Application Must Have
 - Create Client DB Tables (Include Brokerage information)
 - Create Client Listing Tables
 - Create Properties Table
