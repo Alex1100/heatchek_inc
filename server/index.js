@@ -4,11 +4,13 @@ const bodyParser = require('body-parser');
 const path = require('path');
 const https = require('https');
 const fs = require('fs');
+const cors = require('cors')
 const debug = require('debug')('app:http');
 require('dotenv').config({path: path.join(__dirname, '../config/.env')});
 
 const routes = require('./routes/router');
 const app = express();
+app.use(cors())
 
 let server;
 let privateKey;
