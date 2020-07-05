@@ -7,6 +7,9 @@
 - Create a way to View and Schedule jobs via Calendly integration
 - Need to be able to complete / mark jobs as completed, ignored, or cancelled
 - Component to view job details aka (location of house, square footage, expected earnings, etc...)
+- [] Must create a subscription to all new events from calendly via a webhook.
+- [] add Events / Jobs DB Tables to be able to auto populate and remove based off subscription events from the Calendly Webhook
+- [] Deploy an instance of the API to Heroku and ensure a proper Webhook subscription is created and works based off new signaled events (since it doesn't work on localhost)
 
 # Employee Application Nice to Have
 - Notify when an employee has arrived at the job site, to have the system send an automated phone call or text message to the broker/owner
