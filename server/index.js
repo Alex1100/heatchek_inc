@@ -22,7 +22,6 @@ app.use(bodyParser.json({limit: "10500mb"}));
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(debugReq);
 app.use('/api', routes);
-app.post('/webhooks', routes.addEvent);
 function debugReq(req, res, next){
   debug("params:", req.params);
   debug("query:", req.query);

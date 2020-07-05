@@ -23,6 +23,6 @@ const callAsyncMiddleware = (func) => async (req, res, next) => {
 
 router.post('/signup', signup);
 router.post('/login', login);
-router.post('/invitee_created', addEvent);
+router.post('/add-event', addEvent);
 router.post('/subscribe-to-webhook', subscribeToWebhooks)
 module.exports = router;
