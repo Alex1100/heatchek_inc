@@ -1,5 +1,5 @@
 const connectToPostgres = () => {
-  require('../database/employee_db/connectDB');
+  require('../database').employeeDBClient;
 };
 
 module.exports = {

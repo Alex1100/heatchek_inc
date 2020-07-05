@@ -35,10 +35,10 @@ const startServer = () => {
   	privateKey = fs.readFileSync(path.join(__dirname, '../heatchek-api.io.key')).toString();
   	certificate = fs.readFileSync(path.join(__dirname, '../heatchek-api.io.crt')).toString();
     options = { key: privateKey, cert: certificate};
-  	server = https.Server(options, app).listen(5000, (err) => console.log('ERROR IS: ', err));
+  	server = https.Server(options, app).listen(process.env.PORT || 5000, (err) => console.log('ERROR IS: ', err));
   } else {
     server = require('http').Server(app);
-  	server.listen(5000, (err) =>
+  	server.listen(process.env.PORT || 5000, (err) =>
   		console.log('server running!!!\n')
   	);
   }
