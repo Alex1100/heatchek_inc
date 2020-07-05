@@ -18,64 +18,63 @@
 -  [X] One for each range of square footage <= 2000, <= 3500, <= 5999
 - [X] Also for each size variant, we must also add in the potential charges for each combination of services: with drone pictures, with drone videos, with drone pictures and videos, with 2d floor plan, with 3d and 2d floor plan, with 3d floor plan, etc...
 - [X] POSSIBILITIES
-
-  A) <= 2000 sqft
-    1. with drone pictures
-      - FUTURE DEVELOPMENTS
-      - and with 2d floor plans
-      - and with 3d floor plans
-      - and with both 2d and 3d floor plans
-    2. with drone videos
-      - FUTURE DEVELOPMENTS
-      - and with 2d floor plans
-      - and with 3d floor plans
-      - and with both 2d and 3d floor plans
-    3. with drone pictures and videos
-      - FUTURE DEVELOPMENTS
-      - and with 2d floor plans
-      - and with 3d floor plans
-      - and with both 2d and 3d floor plans
-    4. FUTURE DEVELOPMENTS with only 2d floor plans
-    5. FUTURE DEVELOPMENTS with only 3d floor plans
-    6. FUTURE DEVELOPMENTS with only both 2d/3d floor plans
-  B) <= 3500 sqft
-    1. with drone pictures
-      - FUTURE DEVELOPMENTS
-      - and with 2d floor plans
-      - and with 3d floor plans
-      - and with both 2d and 3d floor plans
-    2. with drone videos
-      - FUTURE DEVELOPMENTS
-      - and with 2d floor plans
-      - and with 3d floor plans
-      - and with both 2d and 3d floor plans
-    3. with drone pictures and videos
-      - FUTURE DEVELOPMENTS
-      - and with 2d floor plans
-      - and with 3d floor plans
-      - and with both 2d and 3d floor plans
-    4. FUTURE DEVELOPMENTS with only 2d floor plans
-    5. FUTURE DEVELOPMENTS with only 3d floor plans
-    6. FUTURE DEVELOPMENTS with only both 2d/3d floor plans
-  C) <= 5999 sqft
-    1. with drone pictures
-      - FUTURE DEVELOPMENTS
-      - and with 2d floor plans
-      - and with 3d floor plans
-      - and with both 2d and 3d floor plans
-    2. with drone videos
-      - FUTURE DEVELOPMENTS
-      - and with 2d floor plans
-      - and with 3d floor plans
-      - and with both 2d and 3d floor plans
-    3. with drone pictures and videos
-      - FUTURE DEVELOPMENTS
-      - and with 2d floor plans
-      - and with 3d floor plans
-      - and with both 2d and 3d floor plans
-    4. FUTURE DEVELOPMENTS with only 2d floor plans
-    5. FUTURE DEVELOPMENTS with only 3d floor plans
-    6. FUTURE DEVELOPMENTS with only both 2d/3d floor plans
+- [X] <= 2000 sqft
+  1. with drone pictures
+    - FUTURE DEVELOPMENTS
+    - and with 2d floor plans
+    - and with 3d floor plans
+    - and with both 2d and 3d floor plans
+  2. with drone videos
+    - FUTURE DEVELOPMENTS
+    - and with 2d floor plans
+    - and with 3d floor plans
+    - and with both 2d and 3d floor plans
+  3. with drone pictures and videos
+    - FUTURE DEVELOPMENTS
+    - and with 2d floor plans
+    - and with 3d floor plans
+    - and with both 2d and 3d floor plans
+  4. FUTURE DEVELOPMENTS with only 2d floor plans
+  5. FUTURE DEVELOPMENTS with only 3d floor plans
+  6. FUTURE DEVELOPMENTS with only both 2d/3d floor plans
+- [X] <= 3500 sqft
+  1. with drone pictures
+    - FUTURE DEVELOPMENTS
+    - and with 2d floor plans
+    - and with 3d floor plans
+    - and with both 2d and 3d floor plans
+  2. with drone videos
+    - FUTURE DEVELOPMENTS
+    - and with 2d floor plans
+    - and with 3d floor plans
+    - and with both 2d and 3d floor plans
+  3. with drone pictures and videos
+    - FUTURE DEVELOPMENTS
+    - and with 2d floor plans
+    - and with 3d floor plans
+    - and with both 2d and 3d floor plans
+  4. FUTURE DEVELOPMENTS with only 2d floor plans
+  5. FUTURE DEVELOPMENTS with only 3d floor plans
+  6. FUTURE DEVELOPMENTS with only both 2d/3d floor plans
+- [X] <= 5999 sqft
+  1. with drone pictures
+    - FUTURE DEVELOPMENTS
+    - and with 2d floor plans
+    - and with 3d floor plans
+    - and with both 2d and 3d floor plans
+  2. with drone videos
+    - FUTURE DEVELOPMENTS
+    - and with 2d floor plans
+    - and with 3d floor plans
+    - and with both 2d and 3d floor plans
+  3. with drone pictures and videos
+    - FUTURE DEVELOPMENTS
+    - and with 2d floor plans
+    - and with 3d floor plans
+    - and with both 2d and 3d floor plans
+  4. FUTURE DEVELOPMENTS with only 2d floor plans
+  5. FUTURE DEVELOPMENTS with only 3d floor plans
+  6. FUTURE DEVELOPMENTS with only both 2d/3d floor plans
 - [] 45 different event varieties
 
 - [] Create Client DB Tables (Include Brokerage information)
