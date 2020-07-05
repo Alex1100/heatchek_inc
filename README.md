@@ -17,7 +17,8 @@
 - [X] Create a calendar event for each type of transaction on Calendly
 -  [X] One for each range of square footage <= 2000, <= 3500, <= 5999
 - [X] Also for each size variant, we must also add in the potential charges for each combination of services: with drone pictures, with drone videos, with drone pictures and videos, with 2d floor plan, with 3d and 2d floor plan, with 3d floor plan, etc...
-- [X] POSSIBILITIES:
+- [X] POSSIBILITIES
+
   A) <= 2000 sqft
     1. with drone pictures
       - FUTURE DEVELOPMENTS
