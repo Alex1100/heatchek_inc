@@ -7,9 +7,12 @@
 - Create a way to View and Schedule jobs via Calendly integration
 - Need to be able to complete / mark jobs as completed, ignored, or cancelled
 - Component to view job details aka (location of house, square footage, expected earnings, etc...)
-- [] Must create a subscription to all new events from calendly via a webhook.
+- [X] Must create a subscription to all new events from calendly via a webhook.
+- [] Find out how to create a subscription without using curl (curl --header "X-TOKEN: MFBIGFLBNVCV52OYXH72ZSJINHUNZXFB" --data "url=https://heatchek-inc.herokuapp.com/api/add-event&events[]=invitee.created" https://calendly.com/api/v1/hooks)
+- [] Write a bash script to create a subscription via curl on an EC2 Amazon Linux instance AMI
 - [] add Events / Jobs DB Tables to be able to auto populate and remove based off subscription events from the Calendly Webhook
 - [] Deploy an instance of the API to Heroku and ensure a proper Webhook subscription is created and works based off new signaled events (since it doesn't work on localhost)
+- [] Migrate from Heroku to AWS EC2 to make sure the app serves via https with it's existing ssl credentials
 
 # Employee Application Nice to Have
 - Notify when an employee has arrived at the job site, to have the system send an automated phone call or text message to the broker/owner
