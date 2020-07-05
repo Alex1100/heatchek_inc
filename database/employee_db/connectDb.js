@@ -1,5 +1,7 @@
 const path = require('path');
-require('dotenv').config({ path: path.join(__dirname, 'config') });
+if (process.env.NODE_ENV !== "PROD") {
+  require('dotenv').config({ path: path.join(__dirname, 'config') });
+}
 const { Client } = require('pg');
 const client = new Client({
   connectionString: process.env.EMPLOYEE_DB_CONNECTION_STRING,
