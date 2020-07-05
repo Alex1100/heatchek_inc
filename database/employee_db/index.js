@@ -1,7 +1,7 @@
-const connectDB = require('./connectDB');
+const connect = require('./connect');
 const queries = require('./queries');
 
 module.exports = {
-  ...connectDB,
+  ...connect,
   ...queries,
 }
