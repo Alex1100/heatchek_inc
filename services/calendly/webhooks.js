@@ -5,12 +5,12 @@ const subscribeToWebhooks = async (req, res) => {
     const subscribedResponse = await axios.post(
       'https://calendly.com/api/v1/hooks',
       {
-        url: process.env.NODE_ENV !== "DEV" ? 'https://heatchek-inc.herokuapp.com/api/add-event' : 'http://localhost:5000/api/add-event',
+        url: `${process.env.BASE_URL}/add-event`,
         events: ["invitee.created", "invitee.cancelled"],
       },
       {
         header: {
-          'X-TOKEN': "MFBIGFLBNVCV52OYXH72ZSJINHUNZXFB",
+          'X-TOKEN': process.env.CALENDLY_TOKEN,
         },
       },
     );

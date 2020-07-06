@@ -1,8 +1,10 @@
 const router = require('express').Router();
 
 const {
-  login,
-  signup,
+  employeeLogin,
+  employeeSignup,
+  customerLogin,
+  customerSignup,
   addEvent,
 } = require('../controllers');
 
@@ -21,8 +23,12 @@ const callAsyncMiddleware = (func) => async (req, res, next) => {
   await req.serviceCreated[func]();
 }
 
-router.post('/signup', signup);
-router.post('/login', login);
+router.post('/employee-signup', employeeSignup);
+router.post('/employee-login', employeeLogin);
+router.post('/customer-signup', customerSignup);
+router.post('/customer-login', customerLogin);
 router.post('/add-event', addEvent);
-router.post('/subscribe-to-webhook', subscribeToWebhooks)
+router.post('/subscribe-to-webhook', subscribeToWebhooks);
+
+
 module.exports = router;

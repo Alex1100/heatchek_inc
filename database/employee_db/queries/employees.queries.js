@@ -1,4 +1,4 @@
-const getUserByEmailSQL = ({
+const getEmployeeByEmailSQL = ({
   email,
 }) => `
   SELECT
@@ -13,7 +13,7 @@ const getUserByEmailSQL = ({
   LIMIT 1
 `;
 
-const userExistsSQL = ({
+const employeeExistsSQL = ({
   email
 }) => `
   SELECT EXISTS(
@@ -23,7 +23,7 @@ const userExistsSQL = ({
   )
 `;
 
-const updateLastLogin = ({
+const updateEmployeeLastLogin = ({
   user_id
 }) => `
   UPDATE employees
@@ -33,7 +33,7 @@ const updateLastLogin = ({
 `;
 
 
-const createUserSQL = ({
+const createEmployeeSQL = ({
   first_name,
   last_name,
   email,
@@ -58,8 +58,8 @@ RETURNING first_name, last_name, email, is_admin, created_at
 `;
 
 module.exports = {
-  userExistsSQL,
-  updateLastLogin,
-  getUserByEmailSQL,
-  createUserSQL,
+  employeeExistsSQL,
+  updateEmployeeLastLogin,
+  getEmployeeByEmailSQL,
+  createEmployeeSQL,
 };
