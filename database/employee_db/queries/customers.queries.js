@@ -3,6 +3,7 @@ const createCustomerSQL = ({
   last_name,
   email,
   mobile_number,
+  business
 }) => `
 INSERT INTO customers (
   first_name,
