@@ -1,4 +1,4 @@
-const getEmployeeJobs = ({
+const getEmployeeJobsSQL = ({
   employeeId,
 }) => `
   SELECT * FROM employee_jobs
@@ -7,7 +7,7 @@ const getEmployeeJobs = ({
   WHERE employee_jobs.employee_id = ${employeeId}
 `;
 
-const getActiveEmployeeJobs = ({
+const getActiveEmployeeJobsSQL = ({
   employeeId,
 }) => `
   SELECT * FROM employee_jobs
@@ -18,7 +18,7 @@ const getActiveEmployeeJobs = ({
   AND cancelled = false
 `;
 
-const getResolvedEmployeeJobs = ({
+const getResolvedEmployeeJobsSQL = ({
   employeeId,
 }) => `
   SELECT * FROM employee_jobs
@@ -29,7 +29,7 @@ const getResolvedEmployeeJobs = ({
   AND cancelled = false
 `;
 
-const getCancelledEmployeeJobs = ({
+const getCancelledEmployeeJobsSQL = ({
   employeeId,
 }) => `
   SELECT * FROM employee_jobs
@@ -42,8 +42,8 @@ const getCancelledEmployeeJobs = ({
 
 
 module.exports = {
-  getEmployeeJobs,
-  getActiveEmployeeJobs,
-  getResolvedEmployeeJobs,
-  getCancelledEmployeeJobs,
+  getEmployeeJobsSQL,
+  getActiveEmployeeJobsSQL,
+  getResolvedEmployeeJobsSQL,
+  getCancelledEmployeeJobsSQL,
 };

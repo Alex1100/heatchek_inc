@@ -3,6 +3,10 @@ const {
   userExistsSQL,
   createUserSQL,
   createEventSQL,
+  createEventSQL,
+  customerCancelEventSQL,
+  customerRescheduleEventSQL,
+  employeeCancelEventSQL,
 } = require('../../database');
 
 const addEvent = async (req, res) => {
@@ -74,6 +78,62 @@ const addEvent = async (req, res) => {
   }
 };
 
+const cancelEvent = async (req, res) => {
+  try {
+    const {
+      cancelledBy,
+      eventId,
+      cancelReason,
+    } = req.body;
+
+    const cancellationQuery =
+      cancelledBy === "customer" ?
+        customerCancelEventSQL :
+        employeeCancelEventSQL;
+
+    const cancelledEvent = await employeeDBClient.query(cancellationQuery({
+      eventId,
+      cancelReason,
+    }));
+
+    res.status(204).send({
+      cancelledEvent,
+    });
+  } catch (error) {
+    console.log('ERROR UPDATING EVENT FOR CANCELLATION: ', error);
+    res.status(401).send({
+      cancelledEvent: null,
+      error,
+    })
+  }
+}
+
+const rescheduleEvent = async (req, res) => {
+  try {
+    const {
+      eventId,
+      startTime: start_time,
+    } = req.body;
+
+    const rescheduledEvent = await employeeDBClient.query(customerRescheduleEventSQL({
+      eventId,
+      start_time,
+    }));
+
+    res.status(204).send({
+      rescheduledEvent,
+    });
+  } catch (error) {
+    console.log('ERROR UPDATING EVENT FOR RESCHEDULING: ', error);
+    res.status(401).send({
+      rescheduledEvent: null,
+      error,
+    })
+  }
+}
+
 module.exports = {
   addEvent,
+  cancelEvent,
+  rescheduleEvent,
 }

@@ -23,7 +23,7 @@ const employeeExistsSQL = ({
   )
 `;
 
-const updateEmployeeLastLogin = ({
+const updateEmployeeLastLoginSQL = ({
   user_id
 }) => `
   UPDATE employees
@@ -59,7 +59,7 @@ RETURNING first_name, last_name, email, is_admin, created_at
 
 module.exports = {
   employeeExistsSQL,
-  updateEmployeeLastLogin,
+  updateEmployeeLastLoginSQL,
   getEmployeeByEmailSQL,
   createEmployeeSQL,
 };

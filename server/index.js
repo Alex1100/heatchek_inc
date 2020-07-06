@@ -22,13 +22,13 @@ app.use(bodyParser.json({limit: "10500mb"}));
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(debugReq);
 app.use('/api', routes);
+
 function debugReq(req, res, next){
   debug("params:", req.params);
   debug("query:", req.query);
   debug("body:", req.body);
   next();
 };
-console.log('PORT: ', process.env.PORT);
 
 const startServer = () => {
   if (process.env.SERVE_HTTPS === 'yes' && process.env.NODE_ENV !== "DEV") {

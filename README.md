@@ -9,6 +9,7 @@
 - [X] add Events / Jobs DB Tables to be able to auto populate and remove based off subscription events from the Calendly Webhook
 - [ ] Create a way to View and Schedule jobs via Calendly integration
 - [ ] Need to be able to complete / mark jobs as completed, ignored, or cancelled
+- [ ] Push notifications for when a job is assigned to an employee
 - [ ] Component to view job details aka (location of house, square footage, expected earnings, etc...)
 - [ ] Find out how to create a subscription without using curl (curl --header "X-TOKEN: MFBIGFLBNVCV52OYXH72ZSJINHUNZXFB" --data "url=https://heatchek-inc.herokuapp.com/api/add-event&events[]=invitee.created" https://calendly.com/api/v1/hooks)
 - [ ] Write a bash script to create a subscription via curl on an EC2 Amazon Linux instance AMI
@@ -87,8 +88,6 @@
 - [X] Text based authentication to avoid users from
 - [ ] 45 different event varieties
  remebering passwords and username/emails
-- [ ] Create Client Listing Tables
-- [ ] Create Properties Table
 - [ ] Create Embedded Signing Ceremony experience with docusign node client
 - [ ] Query docusign after redirect uri is hit to verify if a signature has been provided
  come out and service the property

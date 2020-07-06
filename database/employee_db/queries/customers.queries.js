@@ -47,7 +47,7 @@ const customerExistsSQL = ({
   )
 `;
 
-const updateCustomerLastLogin = ({
+const updateCustomerLastLoginSQL = ({
   user_id
 }) => `
   UPDATE customers
@@ -58,7 +58,7 @@ const updateCustomerLastLogin = ({
 
 module.exports = {
   createCustomerSQL,
-  updateCustomerLastLogin,
+  updateCustomerLastLoginSQL,
   customerExistsSQL,
   getCustomerByEmailSQL,
 };

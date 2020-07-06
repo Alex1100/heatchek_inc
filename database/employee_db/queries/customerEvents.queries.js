@@ -1,4 +1,4 @@
-const createCustomerEvent = ({
+const createCustomerEventSQL = ({
   customer_id,
   event_id,
 }) => `
@@ -13,7 +13,7 @@ const createCustomerEvent = ({
   RETURNING *
 `;
 
-const getCustomerEvents = ({
+const getCustomerEventsSQL = ({
   customerId,
 }) => `
   SELECT * FROM customer_events
@@ -22,7 +22,7 @@ const getCustomerEvents = ({
   WHERE customer_events.customer_id = ${customerId}
 `;
 
-const getCustomerEvent = ({
+const getCustomerEventSQL = ({
   customerId,
   event_id
 }) => `
@@ -33,7 +33,7 @@ const getCustomerEvent = ({
   AND customer_evnets.event_id = ${event_id}
 `;
 
-const getActiveCustomerEvents = ({
+const getActiveCustomerEventsSQL = ({
   customer_id,
 }) => `
 SELECT * FROM customer_events
@@ -44,7 +44,7 @@ AND cancelled = false
 AND end_time > NOW()
 `;
 
-const getResolvedCustomerEvents = ({
+const getResolvedCustomerEventsSQL = ({
   customer_id,
 }) => `
 SELECT * FROM customer_events
@@ -55,7 +55,7 @@ AND cancelled = false
 AND end_time <= NOW()
 `;
 
-const getCancelledCustomerEvents = ({
+const getCancelledCustomerEventsSQL = ({
   customer_id,
 }) => `
 SELECT * FROM customer_events
@@ -67,10 +67,10 @@ AND cancelled = true
 
 
 module.exports = {
-  createCustomerEvent,
-  getCustomerEvents,
-  getCustomerEvent,
-  getActiveCustomerEvents,
-  getResolvedCustomerEvents,
-  getCancelledCustomerEvents,
+  createCustomerEventSQL,
+  getCustomerEventsSQL,
+  getCustomerEventSQL,
+  getActiveCustomerEventsSQL,
+  getResolvedCustomerEventsSQL,
+  getCancelledCustomerEventsSQL,
 }
