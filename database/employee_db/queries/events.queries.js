@@ -11,7 +11,6 @@ const createEvent = ({
   RETURING *
 `;
 
-
 module.exports = {
   createEvent,
 }
