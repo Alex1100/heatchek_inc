@@ -1,11 +1,11 @@
-import {
+const {
   employeeDBClient,
   getCustomerEventsSQL,
   getCustomerEventSQL,
   getActiveCustomerEventsSQL,
   getResolvedCustomerEventsSQL,
   getCancelledCustomerEventsSQL,
-} from '../../database';
+} = require('../../database');
 
 const customerEventList = async (req, res) => {
   try {

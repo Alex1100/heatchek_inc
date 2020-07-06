@@ -1,10 +1,10 @@
-import {
+const {
   employeeDBClient,
   getEmployeeJobsSQL,
   getActiveEmployeeJobsSQL,
   getResolvedEmployeeJobsSQL,
   getCancelledEmployeeJobsSQL,
-} from '../../database';
+} = require('../../database');
 
 const employeeJobList = async (req, res) => {
   try {
