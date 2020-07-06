@@ -28,6 +28,7 @@ function debugReq(req, res, next){
   debug("body:", req.body);
   next();
 };
+console.log('PORT: ', process.env.PORT);
 
 const startServer = () => {
   if (process.env.SERVE_HTTPS === 'yes' && process.env.NODE_ENV !== "DEV") {
@@ -37,7 +38,7 @@ const startServer = () => {
   	server = https.Server(options, app).listen(443, (err) => console.log('ERROR IS: ', err));
   } else {
     server = require('http').Server(app);
-  	server.listen(process.env.PORT || 5000, (err) =>
+  	server.listen(process.env.DEV_PORT || 5000, (err) =>
   		console.log('server running!!!\n')
   	);
   }

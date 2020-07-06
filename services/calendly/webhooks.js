@@ -1,4 +1,6 @@
+const path = require('path');
 const axios = require('axios');
+require('dotenv').config({path: path.join(__dirname, '../config/.env')});
 
 const subscribeToWebhooks = async (req, res) => {
   try {
