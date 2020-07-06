@@ -1,4 +1,4 @@
-const auth = require('./authentication.controller');
+const auth = require('./employees.controller');
 const events = require('./events.controller');
 const employeeJobs = require('./employeeJobs.controller');
 const customerEvents = require('./customerEvents.controller');
