@@ -3,13 +3,13 @@ const SALT_ROUNDS = 10;
 
 const {
   employeeDBClient,
-  getUserByEmailSQL,
-  updateLastLogin,
-  userExistsSQL,
-  createUserSQL,
+  getEmployeeByEmailSQL,
+  updateEmployeeLastLogin,
+  employeeExistsSQL,
+  createEmployeeSQL,
 } = require('../../database');
 
-const signup = async (req, res) => {
+const employeeSignup = async (req, res) => {
   try {
     const {
       firstName,
@@ -22,9 +22,9 @@ const signup = async (req, res) => {
     const salt = await bcrypt.genSalt(SALT_ROUNDS);
     const hash = await bcrypt.hash(password, salt);
 
-    const userExists =
+    const employeeExists =
       await employeeDBClient.query(
-        userExistsSQL({
+        employeeExistsSQL({
           firstName,
           lastName,
           email,
@@ -32,7 +32,7 @@ const signup = async (req, res) => {
       );
 
     if (userExists.rows[0].exists) {
-      throw new Error('User already exists with that Username and Email Address');
+      throw new Error('User already exists with that Email Address');
     }
 
     const createUserSQLArgs = {
@@ -45,7 +45,7 @@ const signup = async (req, res) => {
 
     const createdUser =
       await employeeDBClient.query(
-        createUserSQL(createUserSQLArgs),
+        createEmployeeSQL(createUserSQLArgs),
       );
 
     res.status(201).json({
@@ -56,14 +56,14 @@ const signup = async (req, res) => {
   }
 };
 
-const login = async (req, res) => {
+const employeeLogin = async (req, res) => {
   try {
     const {
       password,
       email,
     } = req.body;
 
-    const employee = await employeeDBClient.query(getUserByEmailSQL({email}));
+    const employee = await employeeDBClient.query(getEmployeeByEmailSQL({email}));
     const passwordMatches = await bcrypt.compare(password, employee.rows[0].password);
     if (!passwordMatches) {
         throw new Error('Invalid Password');
@@ -72,7 +72,7 @@ const login = async (req, res) => {
     if (employee.rows[0].password) {
         delete employee.rows[0].password;
         // set last login to now
-        await employeeDBClient.query(updateLastLogin({
+        await employeeDBClient.query(updateEmployeeLastLogin({
           user_id: employee.rows[0].id,
         }))
     }
@@ -88,6 +88,6 @@ const login = async (req, res) => {
 };
 
 module.exports = {
-  login,
-  signup,
+  employeeLogin,
+  employeeSignup,
 }
