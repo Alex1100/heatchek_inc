@@ -1,4 +1,4 @@
-const createCustomer = ({
+const createCustomerSQL = ({
   first_name,
   last_name,
   email,
@@ -56,7 +56,7 @@ const updateCustomerLastLogin = ({
 `;
 
 module.exports = {
-  createCustomer,
+  createCustomerSQL,
   updateCustomerLastLogin,
   customerExistsSQL,
   getCustomerByEmailSQL,

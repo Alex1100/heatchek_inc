@@ -3,7 +3,7 @@ const SALT_ROUNDS = 10;
 
 const {
   employeeDBClient,
-  createCustomer,
+  createCustomerSQL,
   updateCustomerLastLogin,
   customerExistsSQL,
   getCustomerByEmailSQL,
