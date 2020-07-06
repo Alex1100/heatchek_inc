@@ -33,8 +33,8 @@ const startServer = () => {
   if (process.env.SERVE_HTTPS === 'yes' && process.env.NODE_ENV !== "DEV") {
   	privateKey = fs.readFileSync(path.join(__dirname, '../heatchek-api.io.key')).toString();
   	certificate = fs.readFileSync(path.join(__dirname, '../heatchek-api.io.crt')).toString();
-    options = { key: privateKey, cert: certificate};
-  	server = https.Server(options, app).listen(process.env.PORT || 5000, (err) => console.log('ERROR IS: ', err));
+        options = { key: privateKey, cert: certificate};
+  	server = https.Server(options, app).listen(443, (err) => console.log('ERROR IS: ', err));
   } else {
     server = require('http').Server(app);
   	server.listen(process.env.PORT || 5000, (err) =>
