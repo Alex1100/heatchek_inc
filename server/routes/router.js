@@ -20,7 +20,7 @@ const callMiddleware = (func) => (req, res, next) => {
 const callAsyncMiddleware = (func) => async (req, res, next) => {
   await req.serviceCreated[func]();
 }
-
+router.get('/test', (req, res) => res.send({ok: 200}));
 router.post('/signup', signup);
 router.post('/login', login);
 router.post('/add-event', addEvent);
