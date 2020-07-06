@@ -32,7 +32,6 @@ const addEvent = async (req, res) => {
       invitee: {
         first_name,
         last_name,
-        name,
         email,
         text_reminder_number,
         is_reschedule,
