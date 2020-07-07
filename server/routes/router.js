@@ -57,15 +57,15 @@ router.post('/sms-login', smsLogin);
 router.post('/add-event', addEvent);
 router.post('/subscribe-to-webhook', subscribeToWebhooks);
 
-router.get('/employee-jobs', employeeJobList);
-router.get('/employee-active-jobs', activeEmployeeJobList);
-router.get('/employee-resolved-jobs', resolvedEmployeeJobList);
-router.get('/employee-cancelled-jobs', cancelledEmployeeJobList);
-router.get('/customer-events', customerEventList);
-router.get('/customer-event', customerEvent);
-router.get('/customer-active-events', activeCustomerEventList);
-router.get('/customer-resolved-events', resolvedCustomerEventList);
-router.get('/customer-cancelled-events', cancelledCustomerEventList);
+router.get('/employee/:employeeId/jobs', employeeJobList);
+router.get('/employee/:employeeId/jobs/active', activeEmployeeJobList);
+router.get('/employee/:employeeId/jobs/resolved', resolvedEmployeeJobList);
+router.get('/employee/:employeeId/jobs/cancelled', cancelledEmployeeJobList);
+router.get('/customer/:customerId/events', customerEventList);
+router.get('/customer/:customerId/events/:eventId', customerEvent);
+router.get('/customer/:customerId/events/:eventId/active', activeCustomerEventList);
+router.get('/customer/:customerId/events/:eventId/resolved', resolvedCustomerEventList);
+router.get('/customer/:customerId/events/:eventId/cancelled', cancelledCustomerEventList);
 
 
 

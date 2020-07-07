@@ -11,7 +11,7 @@ const customerEventList = async (req, res) => {
   try {
     const {
       customerId: customer_id,
-    } = req.body;
+    } = req.params;
 
     if (!customerId) {
       throw new Error('Must include customer id');
@@ -35,7 +35,7 @@ const customerEvent = async (req, res) => {
     const {
       customerId: customer_id,
       eventId: event_id,
-    } = req.body;
+    } = req.params;
 
     if (!customerId || !event_id) {
       throw new Error('Must include both customer id and event id');
@@ -58,7 +58,7 @@ const activeCustomerEventList = async (req, res) => {
   try {
     const {
       customerId: customer_id,
-    } = req.body;
+    } = req.params;
 
     if (!customer_id) {
       throw new Error('Must include customer id');
@@ -81,7 +81,7 @@ const resolvedCustomerEventList = async (req, res) => {
   try {
     const {
       customerId: customer_id,
-    } = req.body;
+    } = req.params;
 
     if (!customer_id) {
       throw new Error('Must include customer id');
@@ -104,7 +104,7 @@ const cancelledCustomerEventList = async (req, res) => {
   try {
     const {
       customerId: customer_id,
-    } = req.body;
+    } = req.params;
 
     if (!customer_id) {
       throw new Error('Must include customer id');

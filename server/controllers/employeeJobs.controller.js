@@ -10,7 +10,7 @@ const employeeJobList = async (req, res) => {
   try {
     const {
       employeeId,
-    } = req.body;
+    } = req.params;
 
     if (!employeeId) {
       throw new Error('Must include employee id');
@@ -33,7 +33,7 @@ const activeEmployeeJobList = async (req, res) => {
   try {
     const {
       employeeId,
-    } = req.body;
+    } = req.params;
 
     if (!employeeId) {
       throw new Error('Must include employee id');
@@ -56,7 +56,7 @@ const resolvedEmployeeJobList = async (req, res) => {
   try {
     const {
       employeeId,
-    } = req.body;
+    } = req.params;
 
     if (!employeeId) {
       throw new Error('Must include employee id');
@@ -79,7 +79,7 @@ const cancelledEmployeeJobList = async (req, res) => {
   try {
     const {
       employeeId,
-    } = req.body;
+    } = req.params;
 
     if (!employeeId) {
       throw new Error('Must include employee id');
