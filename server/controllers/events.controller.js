@@ -3,7 +3,6 @@ const {
   userExistsSQL,
   createUserSQL,
   createEventSQL,
-  createEventSQL,
   customerCancelEventSQL,
   customerRescheduleEventSQL,
   employeeCancelEventSQL,

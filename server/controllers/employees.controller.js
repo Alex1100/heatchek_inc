@@ -4,7 +4,7 @@ const SALT_ROUNDS = 10;
 const {
   employeeDBClient,
   getEmployeeByEmailSQL,
-  updateEmployeeLastLogin,
+  updateEmployeeLastLoginSQL,
   employeeExistsSQL,
   createEmployeeSQL,
 } = require('../../database');
@@ -62,7 +62,7 @@ const employeeLogin = async (req, res) => {
       password,
       email,
     } = req.body;
-
+    console.log('REQ BODY: ', req.body, email, password);
     const employee = await employeeDBClient.query(getEmployeeByEmailSQL({email}));
     const passwordMatches = await bcrypt.compare(password, employee.rows[0].password);
     if (!passwordMatches) {
@@ -72,7 +72,7 @@ const employeeLogin = async (req, res) => {
     if (employee.rows[0].password) {
         delete employee.rows[0].password;
         // set last login to now
-        await employeeDBClient.query(updateEmployeeLastLogin({
+        await employeeDBClient.query(updateEmployeeLastLoginSQL({
           user_id: employee.rows[0].id,
         }))
     }

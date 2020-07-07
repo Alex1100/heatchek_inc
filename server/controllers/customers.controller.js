@@ -4,7 +4,7 @@ const SALT_ROUNDS = 10;
 const {
   employeeDBClient,
   createCustomerSQL,
-  updateCustomerLastLogin,
+  updateCustomerLastLoginSQL,
   customerExistsSQL,
   getCustomerByEmailSQL,
 } = require('../../database');
@@ -72,7 +72,7 @@ const customerLogin = async (req, res) => {
     if (customer.rows[0].password) {
         delete customer.rows[0].password;
         // set last login to now
-        await employeeDBClient.query(updateCustomerLastLogin({
+        await employeeDBClient.query(updateCustomerLastLoginSQL({
           user_id: customer.rows[0].id,
         }))
     }
