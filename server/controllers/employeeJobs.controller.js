@@ -15,7 +15,7 @@ const employeeJobList = async (req, res) => {
     if (!employeeId) {
       throw new Error('Must include employee id');
     }
-
+    console.log('SQL QUERY IS: ', getEmployeeJobsSQL({employeeId}));
     const employeesJobs = await employeeDBClient.query(getEmployeeJobsSQL({employeeId}));
     res.status(200).send({
       jobs: employeeJobs.rows,
