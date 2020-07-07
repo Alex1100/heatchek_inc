@@ -17,7 +17,7 @@ const employeeJobList = async (req, res) => {
     }
     console.log('SQL QUERY IS: ', getEmployeeJobsSQL({employeeId}));
     const employeesJobs = await employeeDBClient.query(getEmployeeJobsSQL({employeeId}));
-    console.log('EMPLOYEE JOBS ARE: ', employeesJobs);
+    console.log('EMPLOYEE JOBS ARE: ', employeesJobs.rows);
     res.status(200).send({
       jobs: employeeJobs ? employeesJobs.rows : [],
     });
