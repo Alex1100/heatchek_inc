@@ -7,7 +7,8 @@ const getEmployeeByEmailSQL = ({
     last_name,
     email,
     password,
-    is_admin
+    is_admin,
+    api_key
   FROM employees
   WHERE email = '${email}'
   LIMIT 1

@@ -14,7 +14,7 @@
 - [ ] Find out how to create a subscription without using curl (curl --header "X-TOKEN: MFBIGFLBNVCV52OYXH72ZSJINHUNZXFB" --data "url=https://heatchek-inc.herokuapp.com/api/add-event&events[]=invitee.created" https://calendly.com/api/v1/hooks)
 - [ ] Write a bash script to create a subscription via curl on an EC2 Amazon Linux instance AMI
 - [ ] Ensure a proper Webhook subscription is created and works based off new signaled events (since it doesn't work on localhost)
-
+- [ ] Add terms of condition to service on the events for each variant of services offered to ensure that brokers and their associates know all photography and work done is property of HeatChek inc.
 
 # Employee Application Nice to Have
 - [ ] Notify when an employee has arrived at the job site, to have the system send an automated phone call or text message to the broker/owner

@@ -22,7 +22,7 @@ const {
   getCustomerId,
 } = require('../middlewares');
 
-const { subscribeToWebhooks, testVerifySmsLogin, verifySmsLogin, smsLogin, testSmsLogin } = require('../../services');
+const { calendlyOauth, subscribeToWebhooks, testVerifySmsLogin, verifySmsLogin, smsLogin, testSmsLogin } = require('../../services');
 
 const serviceInjector = (service) => (req, res, next) => {
   req.serviceCreated = new service({req, res, next});
@@ -67,6 +67,12 @@ router.get('/customer/:customerId/events/:eventId/active', activeCustomerEventLi
 router.get('/customer/:customerId/events/:eventId/resolved', resolvedCustomerEventList);
 router.get('/customer/:customerId/events/:eventId/cancelled', cancelledCustomerEventList);
 
+
+
+/**
+ * OUATH CALENDLY
+*/
+router.get('auth/calendly', calendlyOauth);
 
 
 module.exports = router;
