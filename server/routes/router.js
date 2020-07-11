@@ -72,7 +72,7 @@ router.get('/customer/:customerId/events/:eventId/cancelled', cancelledCustomerE
 /**
  * OUATH CALENDLY
 */
-router.get('auth/calendly', calendlyOauth);
+router.get('/auth/calendly', calendlyOauth);
 
 
 module.exports = router;
