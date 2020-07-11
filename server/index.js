@@ -12,12 +12,12 @@ require('dotenv').config({path: path.join(__dirname, '../config/.env')});
 const routes = require('./routes/router');
 const app = express();
 app.use(cors())
-app.use(session({
-  secret: process.env.SESSION_SECRET,
-  resave: false,
-  saveUninitialized: false,
-  cookie: { secure: true, maxAge: 1800000 },
-}))
+// app.use(session({
+//   secret: process.env.SESSION_SECRET,
+//   resave: false,
+//   saveUninitialized: false,
+//   cookie: { secure: true, maxAge: 1800000 },
+// }))
 
 let server;
 let privateKey;
