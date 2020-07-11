@@ -20,9 +20,18 @@ const {
 const {
   getEmployeeId,
   getCustomerId,
+  // employeeLogin,
 } = require('../middlewares');
 
-const { calendlyOauth, subscribeToWebhooks, testVerifySmsLogin, verifySmsLogin, smsLogin, testSmsLogin } = require('../../services');
+const {
+  startCalendlyOauth,
+  calendlyOauth,
+  subscribeToWebhooks,
+  testVerifySmsLogin,
+  verifySmsLogin,
+  smsLogin,
+  testSmsLogin,
+} = require('../../services');
 
 const serviceInjector = (service) => (req, res, next) => {
   req.serviceCreated = new service({req, res, next});
@@ -42,6 +51,7 @@ const callAsyncMiddleware = (func) => async (req, res, next) => {
 */
 router.post('/employee-signup', employeeSignup);
 router.post('/employee-login', employeeLogin);
+// router.post('/employee-login', [employeeLogin], startCalendlyOauth);
 router.post('/customer-signup', customerSignup);
 router.post('/customer-login', customerLogin);
 
@@ -72,6 +82,8 @@ router.get('/customer/:customerId/events/:eventId/cancelled', cancelledCustomerE
 /**
  * OUATH CALENDLY
 */
+// router.get('/start/calendly/oauth', startCalendlyOauth);
+
 router.get('/auth/calendly', calendlyOauth);
 
 

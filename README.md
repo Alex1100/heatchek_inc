@@ -15,10 +15,13 @@
 - [ ] Write a bash script to create a subscription via curl on an EC2 Amazon Linux instance AMI
 - [ ] Ensure a proper Webhook subscription is created and works based off new signaled events (since it doesn't work on localhost)
 - [ ] Add terms of condition to service on the events for each variant of services offered to ensure that brokers and their associates know all photography and work done is property of HeatChek inc.
+- [ ] Add stripe payment integration
+
 
 # Employee Application Nice to Have
 - [ ] Notify when an employee has arrived at the job site, to have the system send an automated phone call or text message to the broker/owner
 - [ ] Landing Page with current scheduled jobs, and other relevant information, monthly earnings to date, pay-day date, link to completed jobs
+- [ ] Remove dependence on Calendly, and create and manage my own events.
 
 
 # Client Application Must Have
@@ -98,3 +101,5 @@
 - [ ] Component to view job details aka (location of house, square footage, expected earnings, etc...)
 - [ ] Basic Landing Page to find and schedule more jobs
 - [ ] Auth to allow customers to activate and deactivate prior listing tour links at will
+- [ ] Create form to allow client to select what kind of services they want. At the end when we schedule we will need to add docusign and stripe payment integration.
+- [ ] Add stripe payment integration
