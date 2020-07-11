@@ -75,4 +75,14 @@ router.get('/customer/:customerId/events/:eventId/cancelled', cancelledCustomerE
 router.get('/auth/calendly', calendlyOauth);
 
 
+/**
+ * TEST
+ */
+
+router.get('/test', (req, res) => {
+  console.log('OK');
+  res.send({ok: 'ok'});
+});
+
+
 module.exports = router;
