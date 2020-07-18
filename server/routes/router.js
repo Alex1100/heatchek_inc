@@ -84,7 +84,7 @@ router.get('/customer/:customerId/events/:eventId/cancelled', cancelledCustomerE
 */
 // router.get('/start/calendly/oauth', startCalendlyOauth);
 
-router.get('/auth/calendly', calendlyOauth);
+router.get('/auth/complete/calendly', calendlyOauth);
 
 
 /**

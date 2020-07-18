@@ -1,6 +1,7 @@
 const businessEventVariants = {
-  "2000": {
-    "standard": {
+  basic: {
+    sizeLimit: "2000",
+    a: {
       eventName: "Standard Service <= 2000 sqft",
       description: "Time of appointment for service.",
       eventLink: "standard-2000",
@@ -50,7 +51,7 @@ const businessEventVariants = {
         }
       }
     },
-    "dp": {
+    b: {
       eventName: "Standard Service <= 2000 sqft w/ Drone pictures",
       description: `
         Time of appointment for service.\n
@@ -105,7 +106,7 @@ const businessEventVariants = {
         }
       }
     },
-    "dv": {
+    c: {
       eventName: "Standard <= 2000 sqft w/ Drone Videos",
       description: `
         Time of appointment for service.\n
@@ -160,7 +161,7 @@ const businessEventVariants = {
         }
       }
     },
-    "dc": {
+    d: {
       eventName: "Standard <= 2000 sqft w/ Drone Content",
       description: `
         Time of appointment for service.\n
@@ -216,8 +217,9 @@ const businessEventVariants = {
       }
     },
   },
-  "3500": {
-    "standard": {
+  fine: {
+    sizeLimit: "3500",
+    a: {
       eventName: "Standard Service <= 3500 sqft",
       description: "Time of appointment for service.",
       eventLink: "standard-3500",
@@ -267,7 +269,7 @@ const businessEventVariants = {
         }
       }
     },
-    "dp": {
+    b: {
       eventName: "Standard Service <= 3500 sqft w/ Drone pictures",
       description: `
         Time of appointment for service.\n
@@ -322,7 +324,7 @@ const businessEventVariants = {
         }
       }
     },
-    "dv": {
+    c: {
       eventName: "Standard <= 3500 sqft w/ Drone Videos",
       description: `
         Time of appointment for service.\n
@@ -377,7 +379,7 @@ const businessEventVariants = {
         }
       }
     },
-    "dc": {
+    d: {
       eventName: "Standard <= 3500 sqft w/ Drone Content",
       description: `
         Time of appointment for service.\n
@@ -433,8 +435,9 @@ const businessEventVariants = {
       }
     },
   },
-  "5999": {
-    "standard": {
+  premium: {
+    sizeLimit: "5999",
+    a: {
       eventName: "Standard Service <= 5999 sqft",
       description: "Time of appointment for service.",
       eventLink: "standard-5999",
@@ -483,7 +486,7 @@ const businessEventVariants = {
         }
       }
     },
-    "dp": {
+    b: {
       eventName: "Standard Service <= 5999 sqft w/ Drone pictures",
       description: `
         Time of appointment for service.\n
@@ -538,7 +541,7 @@ const businessEventVariants = {
         }
       }
     },
-    "dv": {
+    c: {
       eventName: "Standard <= 5999 sqft w/ Drone Videos",
       description: `
         Time of appointment for service.\n
@@ -593,7 +596,7 @@ const businessEventVariants = {
         }
       }
     },
-    "dc": {
+    d: {
       eventName: "Standard <= 5999 sqft w/ Drone Content",
       description: `
         Time of appointment for service.\n
@@ -649,8 +652,9 @@ const businessEventVariants = {
       }
     },
   },
-  "9999": {
-    "standard": {
+  premier: {
+    sizeLimit: "9999",
+    a: {
       eventName: "Standard Service <= 9999 sqft",
       description: "Time of appointment for service.",
       eventLink: "standard-9999",
@@ -700,7 +704,7 @@ const businessEventVariants = {
         }
       }
     },
-    "dp": {
+    b: {
       eventName: "Standard Service <= 9999 sqft w/ Drone pictures",
       description: `
         Time of appointment for service.\n
@@ -755,7 +759,7 @@ const businessEventVariants = {
         }
       }
     },
-    "dv": {
+    c: {
       eventName: "Standard <= 9999 sqft w/ Drone Videos",
       description: `
         Time of appointment for service.\n
@@ -810,7 +814,7 @@ const businessEventVariants = {
         }
       }
     },
-    "dc": {
+    d: {
       eventName: "Standard <= 9999 sqft w/ Drone Content",
       description: `
         Time of appointment for service.\n
@@ -866,8 +870,9 @@ const businessEventVariants = {
       }
     },
   },
-  "10000": {
-    "deluxe": {
+  deluxe: {
+    minSize: "10000",
+    a: {
       eventName: "Deluxe Service >= 10000 sqft",
       description: "Time of appointment for service.",
       eventLink: "deluxe-10000",
@@ -917,7 +922,7 @@ const businessEventVariants = {
         }
       }
     },
-    "dp": {
+    b: {
       eventName: "Deluxe Service >= 10000 sqft w/ Drone pictures",
       description: `
         Time of appointment for service.\n
@@ -972,7 +977,7 @@ const businessEventVariants = {
         }
       }
     },
-    "dv": {
+    c: {
       eventName: "Deluxe Service >= 10000 sqft w/ Drone Videos",
       description: `
         Time of appointment for service.\n
@@ -1027,7 +1032,7 @@ const businessEventVariants = {
         }
       }
     },
-    "dc": {
+    d: {
       eventName: "Deluxe Service >= 10000 sqft w/ Drone Content",
       description: `
         Time of appointment for service.\n
