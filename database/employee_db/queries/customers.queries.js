@@ -34,7 +34,6 @@ SELECT
   business
 FROM customers
 WHERE mobile_number = '${mobileNumber}'
-LIMIT 1
 `;
 
 const getCustomerByEmailSQL = ({
