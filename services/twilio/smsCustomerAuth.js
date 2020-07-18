@@ -55,10 +55,9 @@ const testVerifySmsLogin = async (req, res) => {
 const smsLogin = async (req, res) => {
   try {
     const {
-      customerId,
-      email,
+      mobileNumber,
     } = req.body;
-    const customer = await employeeDBClient.query(getCustomerByPhoneSQL({email}));
+    const customer = await employeeDBClient.query(getCustomerByPhoneSQL({mobileNumber}));
     console.log('CUSTOMER IS: ', customer);
     const verification =
       await twilioClient
