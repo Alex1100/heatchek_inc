@@ -59,7 +59,7 @@ const smsLogin = async (req, res) => {
     } = req.body;
     console.log('MOBILE NUMBER IS: ', mobileNumber);
     const customer = await employeeDBClient.query(getCustomerByPhoneSQL({mobileNumber}));
-    console.log('CUSTOMER IS: ', customer);
+    console.log('CUSTOMER IS: ', customer.rows[0]);
     const verification =
       await twilioClient
         .verify
