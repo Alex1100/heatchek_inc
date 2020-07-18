@@ -86,7 +86,7 @@ const verifySmsLogin = async (req, res) => {
       mobileNumber,
       verificationCode,
     } = req.body;
-
+    console.log('POST DATA HERE IS: ', mobileNumber, verificationCode);
     const isVerified = await twilioClient.verify.services(process.env.SMS_AUTH_SERVICE_SID)
       .verificationChecks
       .create({to: mobileNumber, code: verificationCode}).status === "approved";
