@@ -4,7 +4,7 @@ require('dotenv').config({path: path.join(__dirname, '../config/.env')});
 const twilioClient = require('twilio')(process.env.TWILIO_ACCOUNT_SID, process.env.TWILIO_AUTH_TOKEN);
 const {
   employeeDBClient,
-  getCustomerByEmailSQL,
+  getCustomerByPhoneSQL,
 } = require('../../database');
 
 const testSmsLogin = async (req, res) => {
@@ -58,8 +58,8 @@ const smsLogin = async (req, res) => {
       customerId,
       email,
     } = req.body;
-    const customer = await employeeDBClient.query(getCustomerByEmailSQL({email}));
-
+    const customer = await employeeDBClient.query(getCustomerByPhoneSQL({email}));
+    console.log('CUSTOMER IS: ', customer);
     const verification =
       await twilioClient
         .verify

@@ -22,6 +22,21 @@ VALUES(
 RETURNING id, first_name, last_name, email, mobile_number, business
 `;
 
+const getCustomerByPhoneSQL = ({
+  mobileNumber,
+}) => `
+SELECT
+  id,
+  first_name,
+  last_name,
+  mobile_number,
+  email,
+  business
+FROM customers
+WHERE mobile_number = ${mobileNumber}
+LIMIT 1
+`;
+
 const getCustomerByEmailSQL = ({
   email,
 }) => `
@@ -57,6 +72,7 @@ const updateCustomerLastLoginSQL = ({
 `;
 
 module.exports = {
+  getCustomerByPhoneSQL,
   createCustomerSQL,
   updateCustomerLastLoginSQL,
   customerExistsSQL,
