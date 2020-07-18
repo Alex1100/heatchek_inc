@@ -89,11 +89,12 @@ const verifySmsLogin = async (req, res) => {
     console.log('POST DATA HERE IS: ', mobileNumber, verificationCode);
     const isVerified = await twilioClient.verify.services(process.env.SMS_AUTH_SERVICE_SID)
       .verificationChecks
-      .create({to: mobileNumber, code: verificationCode}).status === "approved";
+      .create({to: mobileNumber, code: verificationCode});
       console.log(isVerified);
 
     res.status(200).send({
-      isVerified,
+      content: isVerified,
+      isVerified: isVerified.status === "approved",
     });
   } catch (error) {
     res.status(403).send({
