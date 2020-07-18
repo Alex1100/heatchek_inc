@@ -57,6 +57,7 @@ const smsLogin = async (req, res) => {
     const {
       mobileNumber,
     } = req.body;
+    console.log('MOBILE NUMBER IS: ', mobileNumber);
     const customer = await employeeDBClient.query(getCustomerByPhoneSQL({mobileNumber}));
     console.log('CUSTOMER IS: ', customer);
     const verification =

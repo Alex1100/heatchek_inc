@@ -33,7 +33,7 @@ SELECT
   email,
   business
 FROM customers
-WHERE mobile_number = ${mobileNumber}
+WHERE mobile_number = '${mobileNumber}'
 LIMIT 1
 `;
 
