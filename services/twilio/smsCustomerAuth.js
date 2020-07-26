@@ -84,7 +84,7 @@ const verifySmsLogin = async (req, res) => {
       mobileNumber,
       verificationCode,
     } = req.body;
-
+console.log('AUTH INFO: ', mobileNumber, verificationCode);
     const isVerified = await twilioClient.verify.services(process.env.SMS_AUTH_SERVICE_SID)
       .verificationChecks
       .create({to: mobileNumber, code: verificationCode});
@@ -92,7 +92,7 @@ const verifySmsLogin = async (req, res) => {
     // get customer jobs as well
     // and send the schedule over to
     // the client side app
-    
+    console.log('IS VERIFIED: ', isVerified);
     res.status(200).send({
       status: isVerified.status,
       to: isVerified.to,
