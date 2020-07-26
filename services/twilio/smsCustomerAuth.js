@@ -84,6 +84,7 @@ const verifySmsLogin = async (req, res) => {
       mobileNumber,
       verificationCode,
     } = req.body;
+    const customer = await employeeDBClient.query(getCustomerByPhoneSQL({mobileNumber}));
 
     const isVerified = await twilioClient.verify.services(process.env.SMS_AUTH_SERVICE_SID)
       .verificationChecks
