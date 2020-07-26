@@ -54,12 +54,10 @@ const testVerifySmsLogin = async (req, res) => {
 
 const smsLogin = async (req, res) => {
   try {
-    const {
-      mobileNumber,
-    } = req.body;
-    console.log('MOBILE NUMBER IS: ', mobileNumber, getCustomerByPhoneSQL({mobileNumber}));
+    const { mobileNumber } = req.body;
+
     const customer = await employeeDBClient.query(getCustomerByPhoneSQL({mobileNumber}));
-    console.log('CUSTOMER IS: ', customer.rows[0]);
+
     const verification =
       await twilioClient
         .verify
@@ -86,15 +84,20 @@ const verifySmsLogin = async (req, res) => {
       mobileNumber,
       verificationCode,
     } = req.body;
-    console.log('POST DATA HERE IS: ', mobileNumber, verificationCode);
+
     const isVerified = await twilioClient.verify.services(process.env.SMS_AUTH_SERVICE_SID)
       .verificationChecks
       .create({to: mobileNumber, code: verificationCode});
-      console.log(isVerified);
-
+    console.log(isVerified);
+    // get customer jobs as well
+    // and send the schedule over to
+    // the client side app
+    
     res.status(200).send({
-      content: isVerified,
-      isVerified: isVerified.status === "approved",
+      status: isVerified.status,
+      to: isVerified.to,
+      valid: isVerified.valid,
+      customer,
     });
   } catch (error) {
     res.status(403).send({
