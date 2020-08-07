@@ -66,7 +66,7 @@ const addEvent = async (req, res) => {
     // create event
     const eventArgs = {
       columns: `service_type, service_variant, duration, location, client_phone_number, event_additional_details, start_time, end_time`,
-      values: `'${packageType}', '${packageVariant}', ${duration}, '${serviceLocation}', '${mobileNumber}', '${additionalDetails}', to_timestamp('${event_start}'), to_timestamp('${event_end}')`,
+      values: `'${packageType}', '${packageVariant}', ${duration}, '${serviceLocation}', '${mobileNumber}', '${additionalDetails}', to_timestamp(${event_start}), to_timestamp(${event_end})`,
     };
 
     // console.log('CREATED CUSTOMER IS: ', createdCustomer);
