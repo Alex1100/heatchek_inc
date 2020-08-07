@@ -9,7 +9,7 @@ const {
   createCustomerSQL,
   getCustomerByEmailSQL,
   eventOverlappingSQL,
-  createCutomerEventsSQL,
+  createCustomerEventSQL,
 } = require('../../database');
 
 const { businessEventVariants } = require('../../services');
@@ -85,7 +85,7 @@ const addEvent = async (req, res) => {
     const createdEvent = await employeeDBClient.query(createEventSQL(eventArgs));
     // console.log('EVENTS AND CUSTOMER ARE: ', createdEvent.rows[0], createdCustomer.rows[0]);
 
-    const customerEvent = await employeeDBClient.query(createCutomerEventsSQL({
+    const customerEvent = await employeeDBClient.query(createCustomerEventSQL({
       customer_id: createdCustomer.rows[0].id,
       event_id: createdEvent.rows[0].id,
     }));
