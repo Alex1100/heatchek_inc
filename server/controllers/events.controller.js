@@ -61,7 +61,7 @@ const addEvent = async (req, res) => {
     console.log('TIME OF SERVICE: ', selectedDate, selectedTimeOfService);
     const event_start = new Date(`${selectedDate} ${selectedTimeOfService}`).getTime() / 1000;
     // console.log('EVENT START: ', event_start)
-    const event_end = (new Date(`${selectedDate} ${selectedTimeOfService}`).getTime() + businessEventVariants[packageType][packageVariant].eventDuration || 0) / 1000;
+    const event_end = (new Date(`${selectedDate} ${selectedTimeOfService}`).getTime() + (businessEventVariants[packageType][packageVariant].eventDuration *3600*1000) || 0) / 1000;
 
     // create event
     const eventArgs = {
