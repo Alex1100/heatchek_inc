@@ -8,6 +8,7 @@ const {
   employeeCancelEventSQL,
   createCustomerSQL,
   getCustomerByEmailSQL,
+  eventOverlappingSQL,
 } = require('../../database');
 
 const { businessEventVariants } = require('../../services');
