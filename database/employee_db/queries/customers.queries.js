@@ -44,8 +44,8 @@ const getCustomerByEmailSQL = ({
     first_name,
     last_name,
     email,
-    password,
-    business
+    business,
+    mobile_number
   FROM customers
   WHERE email = '${email}'
   LIMIT 1
