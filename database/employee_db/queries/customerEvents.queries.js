@@ -2,7 +2,7 @@ const createCustomerEventSQL = ({
   customer_id,
   event_id,
 }) => `
-  INSERT INTO events (event_id, customer_id)
+  INSERT INTO customer_events (event_id, customer_id)
   VALUES('${event_id}', '${customer_id}')
   RETURNING *
 `;
