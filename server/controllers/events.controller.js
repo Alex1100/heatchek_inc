@@ -21,10 +21,11 @@ const addEvent = async (req, res) => {
       lastName,
       mobileNumber,
       email,
-      business,
-      serviceType,
+      businessName,
+      packageType: serviceType,
+      packageVariant: serviceVariant,
       serviceLocation,
-      eventAdditionalDetails,
+      additionalDetails,
       startTime,
       endTime,
     } = req.body;
@@ -49,8 +50,8 @@ const addEvent = async (req, res) => {
 
     // create event
     const eventArgs = {
-      columns: `service_type, duration, location, client_phone_number, event_additional_details, start_time, end_time`,
-      values: `${serviceType}, ${duration}, ${serviceLocation}, ${mobileNumber}, ${eventAdditionalDetails}, ${startTime}, ${endTime}`,
+      columns: `service_type, service_variant, duration, location, client_phone_number, event_additional_details, start_time, end_time`,
+      values: `${serviceType}, ${serviceVariant}, ${duration}, ${serviceLocation}, ${mobileNumber}, ${additionalDetails}, ${startTime}, ${endTime}`,
     }
     const createdEvent = await employeeDBClient.query(createEventSQL(eventArgs));
     console.log('EVENTS AND CUSTOMER ARE: ', createdEvent.rows[0], createdCustomer.rows[0]);
