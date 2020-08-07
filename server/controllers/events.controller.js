@@ -6,6 +6,7 @@ const {
   customerCancelEventSQL,
   customerRescheduleEventSQL,
   employeeCancelEventSQL,
+  createCustomerSQL,
 } = require('../../database');
 
 const addEvent = async (req, res) => {
@@ -41,7 +42,7 @@ const addEvent = async (req, res) => {
       last_name: lastName,
       mobile_number: mobileNumber,
       email,
-      business,
+      business: businessName,
     };
 
     const createdCustomer = await employeeDBClient.query(createCustomerSQL(customerArgs));
