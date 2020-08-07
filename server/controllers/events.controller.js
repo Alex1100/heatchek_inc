@@ -9,6 +9,7 @@ const {
   createCustomerSQL,
   getCustomerByEmailSQL,
   eventOverlappingSQL,
+  createCutomerEventsSQL,
 } = require('../../database');
 
 const { businessEventVariants } = require('../../services');
