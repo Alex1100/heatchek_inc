@@ -7,6 +7,7 @@ const {
   customerRescheduleEventSQL,
   employeeCancelEventSQL,
   createCustomerSQL,
+  getCustomerByEmailSQL,{email}
 } = require('../../database');
 
 const addEvent = async (req, res) => {
@@ -45,9 +46,11 @@ const addEvent = async (req, res) => {
       email,
       business: businessName,
     };
-
-    const createdCustomer = await employeeDBClient.query(createCustomerSQL(customerArgs));
-
+    let createdCustomer;
+    const existingCustomer = await employeeDBClient.query(getCustomerByEmailSQL({email}))
+    if (!existingCustomer) {
+      createdCustomer = await employeeDBClient.query(createCustomerSQL(customerArgs));
+    }
     // create event
     const eventArgs = {
       columns: `service_type, service_variant, duration, location, client_phone_number, event_additional_details, start_time, end_time`,
