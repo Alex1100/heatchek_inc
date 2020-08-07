@@ -93,7 +93,7 @@ const addEvent = async (req, res) => {
     res.status(201).send({customerEvent: customerEvent.rows[0] });
   } catch (e) {
     console.log('E IS: ', e);
-    res.status(403).send({error: e});
+    res.status(403).json(e);
   }
 };
 
