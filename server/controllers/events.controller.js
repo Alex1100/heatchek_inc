@@ -60,6 +60,7 @@ const addEvent = async (req, res) => {
       values: `'${packageType}', '${packageVariant}', ${duration}, '${serviceLocation}', '${mobileNumber}', '${additionalDetails}', '${startTime}', '${endTime}'`,
     }
     console.log('CREATED CUSTOMER IS: ', createdCustomer);
+    console.log('\n\nEVENT QUERY IS: ', createEventSQL(eventArgs), '\n\n');
     const createdEvent = await employeeDBClient.query(createEventSQL(eventArgs));
     console.log('EVENTS AND CUSTOMER ARE: ', createdEvent.rows[0], createdCustomer.rows[0]);
 
