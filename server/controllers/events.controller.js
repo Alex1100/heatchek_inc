@@ -86,7 +86,10 @@ const addEvent = async (req, res) => {
     console.log(createEventSQL(eventArgs));
     const createdEvent = await employeeDBClient.query(createEventSQL(eventArgs));
     console.log('EVENTS AND CUSTOMER ARE: ', createdEvent.rows[0], createdCustomer.rows[0]);
-
+    console.log('CUSOMTER EVENT CREATION QUERY IS: ', reateCustomerEventSQL({
+      customer_id: createdCustomer.rows[0].id,
+      event_id: createdEvent.rows[0].id,
+    }));
     const customerEvent = await employeeDBClient.query(createCustomerEventSQL({
       customer_id: createdCustomer.rows[0].id,
       event_id: createdEvent.rows[0].id,
