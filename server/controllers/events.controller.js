@@ -31,8 +31,7 @@ const addEvent = async (req, res) => {
       serviceLocation,
       additionalDetails,
       selectedDate,
-      startTime,
-      endTime,
+      selectedTimeOfService,
     } = req.body;
 
     // grab duration here from some map
@@ -58,8 +57,9 @@ const addEvent = async (req, res) => {
     } else {
       createdCustomer = existingCustomer;
     }
-    const event_start = new Date(`${selectedDate} ${startTime}`).getTime() / 1000;
-    const event_end = (new Date(`${selectedDate} ${startTime}`).getTime() + businessEventVariants[packageType][packageVariant].eventDuration || 0) / 1000;
+    const event_start = new Date(`${selectedDate} ${selectedTimeOfService}`).getTime() / 1000;
+    console.log('EVENT START: ', eventStart)
+    const event_end = (new Date(`${selectedDate} ${selectedTimeOfService}`).getTime() + businessEventVariants[packageType][packageVariant].eventDuration || 0) / 1000;
 
     // create event
     const eventArgs = {
