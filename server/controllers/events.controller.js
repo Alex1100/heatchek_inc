@@ -79,7 +79,7 @@ const addEvent = async (req, res) => {
 
     if (overlappingDates.rows.length > 1) {
       // return error here that the selected event date + time is currently not available
-      throw new Error({message: `That date is not available.`);
+      throw new Error({message: `That date is not available.`});
     }
   
     const createdEvent = await employeeDBClient.query(createEventSQL(eventArgs));
