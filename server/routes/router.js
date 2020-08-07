@@ -31,6 +31,7 @@ const {
   verifySmsLogin,
   smsLogin,
   testSmsLogin,
+  pay,
 } = require('../../services');
 
 const serviceInjector = (service) => (req, res, next) => {
