@@ -79,7 +79,7 @@ const addEvent = async (req, res) => {
     console.log(eventOverlappingSQL({event_start, event_end}));
     const overlappingDates = await employeeDBClient.query(eventOverlappingSQL({event_start, event_end}));
     console.log('ROWS!!!: ', overlappingDates.rows.length);
-    if (overlappingDates.rows.length > 1) {
+    if (overlappingDates.rows.length) {
       // return error here that the selected event date + time is currently not available
       throw new Error({message: `That date is not available.`});
     }
@@ -91,7 +91,7 @@ const addEvent = async (req, res) => {
       customer_id: createdCustomer.rows[0].id,
       event_id: createdEvent.rows[0].id,
     }));
-    res.status(201).send({customerEvent: customerEvent.rows[0] });
+    res.status(201).send({ customerEvent: customerEvent.rows[0] });
   } catch (e) {
     console.log('EVENT START: ', e)
     res.status(401).send({error: `That date is not available`});
