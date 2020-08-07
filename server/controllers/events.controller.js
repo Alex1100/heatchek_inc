@@ -48,15 +48,18 @@ const addEvent = async (req, res) => {
     };
     let createdCustomer;
     const existingCustomer = await employeeDBClient.query(getCustomerByEmailSQL({email}))
+    console.log('EXISING CUSTOMER IS: ', existingCustomer);
     if (!existingCustomer) {
       createdCustomer = await employeeDBClient.query(createCustomerSQL(customerArgs));
+    } else {
+      createdCustomer = existingCustomer;
     }
     // create event
     const eventArgs = {
       columns: `service_type, service_variant, duration, location, client_phone_number, event_additional_details, start_time, end_time`,
       values: `'${packageType}', '${packageVariant}', ${duration}, '${serviceLocation}', '${mobileNumber}', '${additionalDetails}', '${startTime}', '${endTime}'`,
     }
-    console.log('CREATED CUSTOMER IS: ', createdCustomer.rows[0]);
+    console.log('CREATED CUSTOMER IS: ', createdCustomer);
     const createdEvent = await employeeDBClient.query(createEventSQL(eventArgs));
     console.log('EVENTS AND CUSTOMER ARE: ', createdEvent.rows[0], createdCustomer.rows[0]);
 
