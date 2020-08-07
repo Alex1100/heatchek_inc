@@ -30,7 +30,7 @@ const getCustomerEventSQL = ({
   LEFT JOIN events
   ON customer_events.event_id = events.id
   WHERE customer_events.customer_id = ${customerId}
-  AND customer_evnets.event_id = ${event_id}
+  AND customer_events.event_id = ${event_id}
 `;
 
 const getActiveCustomerEventsSQL = ({
@@ -39,7 +39,7 @@ const getActiveCustomerEventsSQL = ({
 SELECT * FROM customer_events
 LEFT JOIN events
 ON customer_events.event_id = events.id
-WHERE customer_events.customer_id = ${customerId}
+WHERE customer_events.customer_id = ${customer_id}
 AND cancelled = false
 AND end_time > NOW()
 `;
@@ -50,7 +50,7 @@ const getResolvedCustomerEventsSQL = ({
 SELECT * FROM customer_events
 LEFT JOIN events
 ON customer_events.event_id = events.id
-WHERE customer_events.customer_id = ${customerId}
+WHERE customer_events.customer_id = ${customer_id}
 AND cancelled = false
 AND end_time <= NOW()
 `;
@@ -61,7 +61,7 @@ const getCancelledCustomerEventsSQL = ({
 SELECT * FROM customer_events
 LEFT JOIN events
 ON customer_events.event_id = events.id
-WHERE customer_events.customer_id = ${customerId}
+WHERE customer_events.customer_id = ${customer_id}
 AND cancelled = true
 `;
 
