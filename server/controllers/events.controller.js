@@ -92,7 +92,7 @@ const addEvent = async (req, res) => {
 
     res.status(201).send({customerEvent: customerEvent.rows[0] });
   } catch (e) {
-    console.log('E IS: ', e.message);
+    console.log('E IS: ', e.message, Object.values(e.message), Object.values(e));
     res.status(401).send({error: e.message});
   }
 };
