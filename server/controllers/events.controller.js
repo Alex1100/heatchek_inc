@@ -58,7 +58,7 @@ const addEvent = async (req, res) => {
       createdCustomer = existingCustomer;
     }
     const event_start = new Date(`${selectedDate} ${selectedTimeOfService}`).getTime() / 1000;
-    console.log('EVENT START: ', eventStart)
+    console.log('EVENT START: ', event_start)
     const event_end = (new Date(`${selectedDate} ${selectedTimeOfService}`).getTime() + businessEventVariants[packageType][packageVariant].eventDuration || 0) / 1000;
 
     // create event
@@ -68,7 +68,7 @@ const addEvent = async (req, res) => {
     };
 
     console.log('CREATED CUSTOMER IS: ', createdCustomer);
-    console.log('\n\nEVENT QUERY IS: ', createEventSQL(eventArgs), '\n\n');
+    // console.log('\n\nEVENT QUERY IS: ', createEventSQL(eventArgs), '\n\n');
 
     // check to see if an event exists at the desired time
     // if it does return a certain error message that mentions that
