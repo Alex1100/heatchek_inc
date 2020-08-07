@@ -10,6 +10,8 @@ const {
   getCustomerByEmailSQL,
 } = require('../../database');
 
+const { businessEventVariants } = require('../../services');
+
 const addEvent = async (req, res) => {
   try {
     console.log('REQ BODY: ', req.body, req.params);
