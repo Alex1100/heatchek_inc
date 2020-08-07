@@ -94,7 +94,7 @@ const addEvent = async (req, res) => {
       customer_id: createdCustomer.rows[0].id,
       event_id: createdEvent.rows[0].id,
     }));
-    res.status(201).send({ customerEvent: customerEvent.rows[0] });
+    res.status(201).send({ customerEvent: customerEvent.rows[0], serviceDetails: businessEventVariants[packageType][packageVariant] });
   } catch (e) {
     console.log('EVENT START: ', e)
     res.status(401).send({error: `That date is not available`});
