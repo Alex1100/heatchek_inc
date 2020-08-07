@@ -7,7 +7,7 @@ const {
   customerRescheduleEventSQL,
   employeeCancelEventSQL,
   createCustomerSQL,
-  getCustomerByEmailSQL,{email}
+  getCustomerByEmailSQL,
 } = require('../../database');
 
 const addEvent = async (req, res) => {
