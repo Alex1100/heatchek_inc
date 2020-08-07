@@ -69,7 +69,7 @@ const addEvent = async (req, res) => {
       values: `'${packageType}', '${packageVariant}', ${duration}, '${serviceLocation}', '${mobileNumber}', '${additionalDetails}', to_timestamp(${event_start}), to_timestamp(${event_end})`,
     };
 
-    // console.log('CREATED CUSTOMER IS: ', createdCustomer);
+    console.log('CREATED CUSTOMER IS: ', createdCustomer);
     // console.log('\n\nEVENT QUERY IS: ', createEventSQL(eventArgs), '\n\n');
 
     // check to see if an event exists at the desired time
@@ -85,7 +85,7 @@ const addEvent = async (req, res) => {
     }
     console.log(createEventSQL(eventArgs));
     const createdEvent = await employeeDBClient.query(createEventSQL(eventArgs));
-    // console.log('EVENTS AND CUSTOMER ARE: ', createdEvent.rows[0], createdCustomer.rows[0]);
+    console.log('EVENTS AND CUSTOMER ARE: ', createdEvent.rows[0], createdCustomer.rows[0]);
 
     const customerEvent = await employeeDBClient.query(createCustomerEventSQL({
       customer_id: createdCustomer.rows[0].id,
