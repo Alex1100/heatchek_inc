@@ -93,7 +93,7 @@ const addEvent = async (req, res) => {
     }));
     res.status(201).send({customerEvent: customerEvent.rows[0] });
   } catch (e) {
-    console.log('EVENT START: ',req.body.event_start)
+    console.log('EVENT START: ', e)
     res.status(401).send({error: `That date is not available`});
   }
 };
