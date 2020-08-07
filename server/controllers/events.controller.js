@@ -27,6 +27,7 @@ const addEvent = async (req, res) => {
       packageVariant,
       serviceLocation,
       additionalDetails,
+      selectedDate,
       startTime,
       endTime,
     } = req.body;
@@ -54,13 +55,28 @@ const addEvent = async (req, res) => {
     } else {
       createdCustomer = existingCustomer;
     }
+    const event_start = new Date(`${selectedDate} ${startTime}`).getTime() / 1000;
+    const event_end = (new Date(`${selectedDate} ${startTime}`).getTime() + businessEventVariants[packageType][packageVariant].eventDuration || 0) / 1000;
+
     // create event
     const eventArgs = {
       columns: `service_type, service_variant, duration, location, client_phone_number, event_additional_details, start_time, end_time`,
-      values: `'${packageType}', '${packageVariant}', ${duration}, '${serviceLocation}', '${mobileNumber}', '${additionalDetails}', '${startTime}', '${endTime}'`,
-    }
+      values: `'${packageType}', '${packageVariant}', ${duration}, '${serviceLocation}', '${mobileNumber}', '${additionalDetails}', to_timestamp('${event_start}'), to_timestamp('${event_end}')`,
+    };
+
     console.log('CREATED CUSTOMER IS: ', createdCustomer);
     console.log('\n\nEVENT QUERY IS: ', createEventSQL(eventArgs), '\n\n');
+
+    // check to see if an event exists at the desired time
+    // if it does return a certain error message that mentions that
+    // and adjust front end to show that
+    const overlappingDates = await employeeDBClient.query(eventOverlappingSQL({event_start, event_end}));
+
+    if (overlappingDates.rows.length > 1) {
+      // return error here that the selected event date + time is currently not available
+      throw new Error(`That date is not available.`);
+    }
+  
     const createdEvent = await employeeDBClient.query(createEventSQL(eventArgs));
     console.log('EVENTS AND CUSTOMER ARE: ', createdEvent.rows[0], createdCustomer.rows[0]);
 

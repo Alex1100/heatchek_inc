@@ -4,7 +4,7 @@ const createEventSQL = ({
 }) => `
 INSERT INTO events(${columns})
 VALUES (${values})
-RETURING *
+RETURNING *
 `;
 
 const customerCancelEventSQL = ({
@@ -39,6 +39,14 @@ cancelled_at = NOW()
 WHERE event.id = ${eventId}
 `;
 
+const eventOverlappingSQL = ({
+  event_start,
+  event_end,
+}) => `
+SELECT * FROM events
+WHERE start_time BETWEEN to_timestamp(${event_start}) AND to_timestamp(${event_end})
+OR end_time BETWEEN to_timestamp(${event_start}) AND to_timestamp(${event_end});
+`;
 
 
 module.exports = {
@@ -46,4 +54,5 @@ module.exports = {
   customerCancelEventSQL,
   customerRescheduleEventSQL,
   employeeCancelEventSQL,
+  eventOverlappingSQL,
 }
