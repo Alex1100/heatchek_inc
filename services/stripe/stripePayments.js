@@ -38,7 +38,7 @@ const pay = async (request, response) => {
     let intent;
     if (request.body.payment_method_id) {
       // Create the PaymentIntent
-      console.log('GETS HERE')
+      console.log('GETS HERE: ', request.body);
       intent = await stripe.paymentIntents.create({
         amount: businessEventVariants[request.body.packageType][request.body.packageVariant].serviceFee || 450,
         currency: 'usd',
