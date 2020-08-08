@@ -1,3 +1,5 @@
+const path = require('path');
+
 require('dotenv').config({path: path.join(__dirname, '../config/.env')});
 const stripeLib = require('stripe');
 let stripe;
