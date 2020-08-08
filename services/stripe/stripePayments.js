@@ -1,11 +1,15 @@
+require('dotenv').config({path: path.join(__dirname, '../config/.env')});
 const stripeLib = require('stripe');
 let stripe;
+
 const { businessEventVariants } = require('../');
 // if (process.env.NODE_ENV !== 'prod') {
 //   stripe = stripeLib(process.env.TEST_STRIPE_API_SECRET);
 // } else {
 //   stripe = stripeLib(process.env.PROD_STRIPE_API_SECRET);
 // }
+
+console.log('BUSINESS: ', businessEventVariants);
 
 stripe = stripeLib(process.env.TEST_STRIPE_API_SECRET);
 
