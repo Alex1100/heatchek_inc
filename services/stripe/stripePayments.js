@@ -1,6 +1,6 @@
 const stripeLib = require('stripe');
 let stripe;
-
+const { businessEventVariants } = require('../');
 // if (process.env.NODE_ENV !== 'prod') {
 //   stripe = stripeLib(process.env.TEST_STRIPE_API_SECRET);
 // } else {
