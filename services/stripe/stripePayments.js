@@ -26,12 +26,14 @@ function generateResponse(response, intent) {
 }
 
 const pay = async (request, response) => {
+  console.log('STRIPE IS: ', stripe);
+
   try {
     let intent;
     if (request.body.payment_method_id) {
       // Create the PaymentIntent
       intent = await stripe.paymentIntents.create({
-        amount: 1099,
+        amount: businessEventVariants[request.body.packageType][request.body.packageVariant].serviceFee || 450,
         currency: 'usd',
         confirm: true,
         payment_method: request.body.payment_method_id,
@@ -39,21 +41,19 @@ const pay = async (request, response) => {
         use_stripe_sdk: true
       });
     } else if (request.body.payment_intent_id) {
-      intent = await stripe.paymentIntents.confirm(
-        request.body.payment_intent_id
-      );
+      intent = await stripe.paymentIntents.confirm(request.body.payment_intent_id);
     }
     // Send the response to the client
     console.log('ABOUT TO GENERATE RESPONSE: ', {response, intent});
     return generateResponse(response, intent);
   }  catch (e) {
-    console.log('ERROR IS: ', e);
+    // console.log('ERROR IS: ', e);
     if (e.type === 'StripeCardError') {
       // Display error on client
       return response.send({ error: e.message });
     } else {
       // Something else happened
-      return response.status(500).send({ error: e.type });
+      return response.status(500).send({ error: e });
     }
   }
 };
