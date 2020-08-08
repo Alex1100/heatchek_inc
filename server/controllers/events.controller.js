@@ -16,11 +16,6 @@ const { businessEventVariants } = require('../../services');
 
 const addEvent = async (req, res) => {
   try {
-    console.log('REQ BODY: ', req.body, req.params);
-    // if (req.body.event !== "invitee.created" && req.body.payload.event.cancelled !== false) {
-    //   throw new Error('Unable to add webhook data because it is not of invite creation type');
-    // }
-
     const {
       firstName,
       lastName,
@@ -35,14 +30,7 @@ const addEvent = async (req, res) => {
       selectedTimeOfService,
     } = req.body;
 
-    // grab duration here from some map
-    const duration = 4;
-
-    // if (!payments[0].successful) {
-    //   throw new Error('Unable to schedule event because payment did not successfully go through.');
-    // }
-
-    // create customer
+    const duration = (businessEventVariants[packageType][packageVariant].eventDuration * 3600 * 1000) || 0;
     const customerArgs = {
       first_name: firstName,
       last_name: lastName,
@@ -52,49 +40,47 @@ const addEvent = async (req, res) => {
     };
     let createdCustomer;
     const existingCustomer = await employeeDBClient.query(getCustomerByEmailSQL({email}))
-    // console.log('EXISING CUSTOMER IS: ', existingCustomer);
+
     if (!existingCustomer) {
       createdCustomer = await employeeDBClient.query(createCustomerSQL(customerArgs));
     } else {
       createdCustomer = existingCustomer;
     }
-    console.log('TIME OF SERVICE: ', selectedDate, selectedTimeOfService);
-    const event_start = new Date(`${selectedDate} ${selectedTimeOfService}`).getTime() / 1000;
-    // console.log('EVENT START: ', event_start)
-    const event_end = (new Date(`${selectedDate} ${selectedTimeOfService}`).getTime() + (businessEventVariants[packageType][packageVariant].eventDuration *3600*1000) || 0) / 1000;
 
-    // create event
+    const event_start = new Date(`${selectedDate} ${selectedTimeOfService}`).getTime() / 1000;
+    const event_end = (new Date(`${selectedDate} ${selectedTimeOfService}`).getTime() + duration) / 1000;
+
     const eventArgs = {
       columns: `service_type, service_variant, duration, location, client_phone_number, event_additional_details, start_time, end_time`,
-      values: `'${packageType}', '${packageVariant}', ${duration}, '${serviceLocation}', '${mobileNumber}', '${additionalDetails}', to_timestamp(${event_start}), to_timestamp(${event_end})`,
+      values: `
+        '${packageType}',
+        '${packageVariant}',
+        ${duration},
+        '${serviceLocation}',
+        '${mobileNumber}',
+        '${additionalDetails}',
+        to_timestamp(${event_start}),
+        to_timestamp(${event_end})`,
     };
 
-    console.log('CREATED CUSTOMER IS: ', createdCustomer);
-    // console.log('\n\nEVENT QUERY IS: ', createEventSQL(eventArgs), '\n\n');
-
-    // check to see if an event exists at the desired time
-    // if it does return a certain error message that mentions that
-    // and adjust front end to show that
-    
-    console.log(eventOverlappingSQL({event_start, event_end}));
     const overlappingDates = await employeeDBClient.query(eventOverlappingSQL({event_start, event_end}));
-    console.log('ROWS!!!: ', overlappingDates.rows.length);
+
     if (overlappingDates.rows.length) {
       // return error here that the selected event date + time is currently not available
       throw new Error({message: `That date is not available.`});
     }
-    console.log(createEventSQL(eventArgs));
+
     const createdEvent = await employeeDBClient.query(createEventSQL(eventArgs));
-    console.log('EVENTS AND CUSTOMER ARE: ', createdEvent.rows[0], createdCustomer.rows[0]);
-    console.log('CUSTOMER EVENT CREATION QUERY IS: ', createCustomerEventSQL({
-      customer_id: createdCustomer.rows[0].id,
-      event_id: createdEvent.rows[0].id,
-    }));
     const customerEvent = await employeeDBClient.query(createCustomerEventSQL({
       customer_id: createdCustomer.rows[0].id,
       event_id: createdEvent.rows[0].id,
     }));
-    res.status(201).send({ customerEvent: customerEvent.rows[0], serviceDetails: businessEventVariants[packageType][packageVariant], packageType, packageVariant });
+    res.status(201).send({
+      customerEvent: customerEvent.rows[0],
+      serviceDetails: businessEventVariants[packageType][packageVariant],
+      packageType,
+      packageVariant,
+    });
   } catch (e) {
     console.log('EVENT START: ', e)
     res.status(401).send({error: `That date is not available`});

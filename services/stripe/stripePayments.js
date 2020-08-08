@@ -4,7 +4,7 @@ require('dotenv').config({path: path.join(__dirname, '../config/.env')});
 const stripeLib = require('stripe');
 let stripe;
 
-const { businessEventVariants } = require('../');
+const { businessEventVariants } = require('../business_events');
 // if (process.env.NODE_ENV !== 'prod') {
 //   stripe = stripeLib(process.env.TEST_STRIPE_API_SECRET);
 // } else {
@@ -34,7 +34,7 @@ function generateResponse(response, intent) {
 }
 
 const pay = async (request, response) => {
-  console.log('STRIPE IS: ', stripe);
+  console.log('STRIPE IS: ', stripe, request.body);
 
   try {
     let intent;
