@@ -44,6 +44,7 @@ const pay = async (request, response) => {
       );
     }
     // Send the response to the client
+    console.log('ABOUT TO GENERATE RESPONSE: ', {response, intent});
     return generateResponse(response, intent);
   }  catch (e) {
     if (e.type === 'StripeCardError') {
