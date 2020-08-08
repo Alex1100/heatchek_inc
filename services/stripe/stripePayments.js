@@ -47,6 +47,7 @@ const pay = async (request, response) => {
     console.log('ABOUT TO GENERATE RESPONSE: ', {response, intent});
     return generateResponse(response, intent);
   }  catch (e) {
+    console.log('ERROR IS: ', e);
     if (e.type === 'StripeCardError') {
       // Display error on client
       return response.send({ error: e.message });
