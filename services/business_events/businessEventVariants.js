@@ -444,6 +444,7 @@ const businessEventVariants = {
       eventDuration: 4,
       dateRange: 60,
       timeZone: "PST",
+      reschedulingFee: 125.00,
       cancellationPolicy: `
         Must cancel event prior to 3 days
         (72 hours) of the scheduled event.\n
@@ -1044,7 +1045,7 @@ const businessEventVariants = {
       eventDuration: 12,
       dateRange: 60,
       timeZone: "PST",
-      reschedulingFee: 200.00,
+      reschedulingFee: 500.00,
       cancellationPolicy: `
         Must cancel event prior to 3 days
         (72 hours) of the scheduled event.\n
@@ -1089,6 +1090,32 @@ const businessEventVariants = {
     },
   },
 };
+
+const businessTemplates = {
+  stripeInvoiceFooter: `
+  This is the fee for scheduling and having us service a property.
+
+  The final charges will take into consideration how many square feet the location has, whether or not if any additional services have been requested such as Drone Aerial footage/pictures, 2d/3d Floor Plans, and more.
+  
+  The Base service is for the 3d tour rendering/capturing via our MatterPort Pro 2 camera serviced by one of our Field Specialists and hosting of the digital content for up to one year.
+  
+  All cancelation requests must be made prior to 3 days (72 hours) of the scheduled service event.
+  
+  If we need to reschedule there will be a variable rescheduling fee based on the services we were to provide and the size of the subject property.
+  
+  To view the rescheduling fees please visit:
+  https://www.heatchek.io/rescheduling-policy
+  
+  Please contact the company for any additional questions.
+  
+  heatchekservice@heatchek.io
+  `,
+  defaultMemo: `
+  Thanks for your business!
+
+  We look forward to working with you.
+  `,
+}
 
 
 module.exports = {
