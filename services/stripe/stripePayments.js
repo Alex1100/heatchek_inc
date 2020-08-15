@@ -5,6 +5,7 @@ const stripeLib = require('stripe');
 let stripe;
 
 const { businessEventVariants } = require('../business_events');
+const { getCustomerByEmailSQL } = require('../../database');
 
 if (process.env.NODE_ENV !== "PROD") {
   stripe = stripeLib(process.env.TEST_STRIPE_API_SECRET);
@@ -12,14 +13,12 @@ if (process.env.NODE_ENV !== "PROD") {
   stripe = stripeLib(process.env.LIVE_STRIPE_PRIVATE_KEY);
 }
 
-console.log('BUSINESS: ', businessEventVariants);
-
-function generateResponse(response, intent) {
+function generateResponse(response, intent, customer) {
   console.log('RESPONSE IS: ', response);
   console.log('INTENT IS: ', intent);
   if (intent.status === 'succeeded') {
     // Handle post-payment fulfillment
-    return response.send({ success: true });
+    return response.send({ success: true, customer });
   } else if (intent.status === 'requires_action') {
     // Tell the client to handle the action
     return response.send({
@@ -28,13 +27,23 @@ function generateResponse(response, intent) {
     });
   } else {
     // Any other status would be unexpected, so error
-    return response.status(500).send({error: 'Unexpected status ' + intent.status});
+    return response.status(500).send({ error: 'Unexpected status ' + intent.status });
   }
 }
 
 const pay = async (request, response) => {
   try {
     let intent;
+    const {
+      email,
+    } = request.body;
+
+    const customerData = await employeeDBClient.query(getCustomerByEmailSQL({email}));
+    if (!customerData || !customerData.rows || !customerData.rows[0]) {
+      throw new Error('Unable to make a payment ')
+    }
+    const customer = customerData.rows[0];
+
     if (request.body.payment_method_id) {
       // Create the PaymentIntent
       intent = await stripe.paymentIntents.create({
@@ -50,7 +59,7 @@ const pay = async (request, response) => {
     }
     // Send the response to the client
     console.log('ABOUT TO GENERATE RESPONSE: ', {response, intent});
-    return generateResponse(response, intent);
+    return generateResponse(response, intent, customer);
   }  catch (e) {
     console.log('ERROR IS: ', e);
     if (e.type === 'StripeCardError') {
