@@ -5,7 +5,7 @@ const stripeLib = require('stripe');
 let stripe;
 
 const { businessEventVariants } = require('../business_events');
-const { getCustomerByEmailSQL } = require('../../database');
+const { getCustomerByEmailSQL, employeeDBClient } = require('../../database');
 
 if (process.env.NODE_ENV !== "PROD") {
   stripe = stripeLib(process.env.TEST_STRIPE_API_SECRET);
