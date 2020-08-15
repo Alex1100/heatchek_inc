@@ -13,13 +13,13 @@ if (process.env.NODE_ENV !== "PROD") {
   stripe = stripeLib(process.env.LIVE_STRIPE_PRIVATE_KEY);
 }
 
-function generateResponse(response, intent, customer) {
+function generateResponse(response, intent, customerEvent) {
   // console.log('RESPONSE IS: ', response);
   // console.log('INTENT IS: ', intent);
   if (intent.status === 'succeeded') {
-    console.log('CUSTOMER IS: ', customer);
+    console.log('CUSTOMER EVENT IS: ', customerEvent);
     // Handle post-payment fulfillment
-    return response.send({ success: true, customer });
+    return response.send({ success: true, customerEvent });
   } else if (intent.status === 'requires_action') {
     // Tell the client to handle the action
     return response.send({
@@ -36,16 +36,17 @@ const pay = async (request, response) => {
   try {
     let intent;
     const {
-      email,
+      customer_id,
+      event_id,
     } = request.body;
     console.log('EMAIL IS: ', email);
 
-    const customerData = await employeeDBClient.query(getCustomerByEmailSQL({email}));
+    const customerEventData = await employeeDBClient.query(getCustomerEventSQL({customer_id, event_id}));
     // console.log('CUSTOMER IS: ', customerData.rows[0]);
-    if (!customerData) {
+    if (!customerEventData) {
       throw new Error('Unable to make a payment for a customer that is not in our system.')
     }
-    const customer = customerData.rows[0];
+    const customerEvent = customerEventData.rows[0];
     if (request.body.payment_method_id) {
       // Create the PaymentIntent
       intent = await stripe.paymentIntents.create({
@@ -61,7 +62,7 @@ const pay = async (request, response) => {
     }
     // Send the response to the client
     // console.log('ABOUT TO GENERATE RESPONSE: ', {response, intent});
-    return generateResponse(response, intent, customer);
+    return generateResponse(response, intent, customerEvent);
   }  catch (e) {
     console.log('ERROR IS: ', e);
     if (e.type === 'StripeCardError') {
