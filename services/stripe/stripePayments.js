@@ -17,6 +17,7 @@ function generateResponse(response, intent, customer) {
   console.log('RESPONSE IS: ', response);
   console.log('INTENT IS: ', intent);
   if (intent.status === 'succeeded') {
+    console.log('CUSTOMER IS: ', customer);
     // Handle post-payment fulfillment
     return response.send({ success: true, customer });
   } else if (intent.status === 'requires_action') {
@@ -39,7 +40,7 @@ const pay = async (request, response) => {
     } = request.body;
 
     const customerData = await employeeDBClient.query(getCustomerByEmailSQL({email}));
-    console.log('CUSTOMER IS: ', customerData, customerData.rows[0]);
+    console.log('CUSTOMER IS: ', customerData.rows[0]);
     if (!customerData) {
       throw new Error('Unable to make a payment for a customer that is not in our system.')
     }
