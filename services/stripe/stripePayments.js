@@ -5,15 +5,14 @@ const stripeLib = require('stripe');
 let stripe;
 
 const { businessEventVariants } = require('../business_events');
-// if (process.env.NODE_ENV !== 'prod') {
-//   stripe = stripeLib(process.env.TEST_STRIPE_API_SECRET);
-// } else {
-//   stripe = stripeLib(process.env.PROD_STRIPE_API_SECRET);
-// }
+
+if (process.env.NODE_ENV !== "PROD") {
+  stripe = stripeLib(process.env.TEST_STRIPE_API_SECRET);
+} else {
+  stripe = stripeLib(process.env.LIVE_STRIPE_PRIVATE_KEY);
+}
 
 console.log('BUSINESS: ', businessEventVariants);
-
-stripe = stripeLib(process.env.TEST_STRIPE_API_SECRET);
 
 function generateResponse(response, intent) {
   console.log('RESPONSE IS: ', response);
