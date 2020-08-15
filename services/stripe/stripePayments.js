@@ -39,8 +39,8 @@ const pay = async (request, response) => {
       customer_id,
       event_id,
     } = request.body;
-    console.log('CUSTOMER ID AND EVENT ID: ', customer_id, event_id, getCustomerEventSQL({customer_id, event_id}));
-    const customerEventData = await employeeDBClient.query(getCustomerEventSQL({customer_id, event_id}));
+    console.log('CUSTOMER ID AND EVENT ID: ', customer_id, event_id, getCustomerEventSQL({customerId: customer_id, event_id}));
+    const customerEventData = await employeeDBClient.query(getCustomerEventSQL({customerId: customer_id, event_id}));
     // console.log('CUSTOMER IS: ', customerData.rows[0]);
     if (!customerEventData) {
       throw new Error('Unable to make a payment for a customer that is not in our system.')
