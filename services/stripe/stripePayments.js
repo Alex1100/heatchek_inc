@@ -39,7 +39,6 @@ const pay = async (request, response) => {
       customer_id,
       event_id,
     } = request.body;
-    console.log('EMAIL IS: ', email);
 
     const customerEventData = await employeeDBClient.query(getCustomerEventSQL({customer_id, event_id}));
     // console.log('CUSTOMER IS: ', customerData.rows[0]);
