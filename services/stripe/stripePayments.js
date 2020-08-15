@@ -14,8 +14,8 @@ if (process.env.NODE_ENV !== "PROD") {
 }
 
 function generateResponse(response, intent, customer) {
-  console.log('RESPONSE IS: ', response);
-  console.log('INTENT IS: ', intent);
+  // console.log('RESPONSE IS: ', response);
+  // console.log('INTENT IS: ', intent);
   if (intent.status === 'succeeded') {
     console.log('CUSTOMER IS: ', customer);
     // Handle post-payment fulfillment
@@ -38,14 +38,14 @@ const pay = async (request, response) => {
     const {
       email,
     } = request.body;
+    console.log('EMAIL IS: ', email);
 
     const customerData = await employeeDBClient.query(getCustomerByEmailSQL({email}));
-    console.log('CUSTOMER IS: ', customerData.rows[0]);
+    // console.log('CUSTOMER IS: ', customerData.rows[0]);
     if (!customerData) {
       throw new Error('Unable to make a payment for a customer that is not in our system.')
     }
     const customer = customerData.rows[0];
-
     if (request.body.payment_method_id) {
       // Create the PaymentIntent
       intent = await stripe.paymentIntents.create({
@@ -60,7 +60,7 @@ const pay = async (request, response) => {
       intent = await stripe.paymentIntents.confirm(request.body.payment_intent_id);
     }
     // Send the response to the client
-    console.log('ABOUT TO GENERATE RESPONSE: ', {response, intent});
+    // console.log('ABOUT TO GENERATE RESPONSE: ', {response, intent});
     return generateResponse(response, intent, customer);
   }  catch (e) {
     console.log('ERROR IS: ', e);
