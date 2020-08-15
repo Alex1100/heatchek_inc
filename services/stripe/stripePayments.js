@@ -39,8 +39,9 @@ const pay = async (request, response) => {
     } = request.body;
 
     const customerData = await employeeDBClient.query(getCustomerByEmailSQL({email}));
-    if (!customerData || !customerData.rows || !customerData.rows[0]) {
-      throw new Error('Unable to make a payment ')
+    console.log('CUSTOMER IS: ', customerData, customerData.rows[0]);
+    if (!customerData) {
+      throw new Error('Unable to make a payment for a customer that is not in our system.')
     }
     const customer = customerData.rows[0];
 
