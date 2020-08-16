@@ -7,17 +7,15 @@ let stripe;
 const { businessEventVariants } = require('../business_events');
 const { updateEventPaid, getCustomerEventsSQL, getCustomerByIdSQL, employeeDBClient } = require('../../database');
 
-if (process.env.NODE_ENV !== "PROD") {
-  stripe = stripeLib(process.env.TEST_STRIPE_API_SECRET);
-} else {
-  stripe = stripeLib(process.env.LIVE_STRIPE_PRIVATE_KEY);
-}
+// if (process.env.NODE_ENV !== "PROD") {
+// making sure I only use the test account right now
+stripe = stripeLib(process.env.TEST_STRIPE_API_SECRET);
+// } else {
+//   stripe = stripeLib(process.env.LIVE_STRIPE_PRIVATE_KEY);
+// }
 
 async function generateResponse(response, intent, customerData) {
-  // console.log('RESPONSE IS: ', response);
-  // console.log('INTENT IS: ', intent);
   if (intent.status === 'succeeded') {
-    console.log('CUSTOMER DATA IS: ', customerData);
     // Handle post-payment fulfillment
     await employeeDBClient.query(updateEventPaid({event_id: customerData.event_id }));
     const fetchedCustomerEvents = await employeeDBClient.query(getCustomerEventsSQL({customerId: customerData.customer.id}));
@@ -44,7 +42,7 @@ const pay = async (request, response) => {
       event_id,
     } = request.body;
     const fetchedCustomer = await employeeDBClient.query(getCustomerByIdSQL({customerId: customer_id}));
-    // console.log('CUSTOMER IS: ', customerData.rows[0]);
+
     if (!fetchedCustomer) {
       throw new Error('Unable to make a payment for a customer that is not in our system.')
     }
@@ -52,7 +50,7 @@ const pay = async (request, response) => {
     if (request.body.payment_method_id) {
       // Create the PaymentIntent
       intent = await stripe.paymentIntents.create({
-        amount: 50, // || businessEventVariants[request.body.packageType][request.body.packageVariant].serviceFee || 450,
+        amount: (businessEventVariants[request.body.packageType][request.body.packageVariant].serviceFee || 450) * 100,
         currency: 'usd',
         confirm: true,
         payment_method: request.body.payment_method_id,
@@ -63,7 +61,6 @@ const pay = async (request, response) => {
       intent = await stripe.paymentIntents.confirm(request.body.payment_intent_id);
     }
     // Send the response to the client
-    // console.log('ABOUT TO GENERATE RESPONSE: ', {response, intent});
     return generateResponse(response, intent, { customer, event_id });
   }  catch (e) {
     console.log('ERROR IS: ', e);
