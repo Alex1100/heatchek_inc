@@ -5,17 +5,12 @@
 - [X] Create basic auth flow for employee portal
 - [X] Basic Landing Page to find and schedule more jobs
 - [X] Migrate from Heroku to AWS EC2 to make sure the app serves via https with it's existing ssl credentials
-- [X] Must create a subscription to all new events from calendly via a webhook.
-- [X] add Events / Jobs DB Tables to be able to auto populate and remove based off subscription events from the Calendly Webhook
-- [ ] Create a way to View and Schedule jobs via Calendly integration
+- [X] Add Events / Jobs DB Tables to be able to auto populate and remove based off events
+- [X] Add stripe payment integration
+- [ ] Create a way to View and Schedule jobs via Custom component since we are managing our own events
 - [ ] Need to be able to complete / mark jobs as completed, ignored, or cancelled
 - [ ] Push notifications for when a job is assigned to an employee
 - [ ] Component to view job details aka (location of house, square footage, expected earnings, etc...)
-- [ ] Find out how to create a subscription without using curl (curl --header "X-TOKEN: MFBIGFLBNVCV52OYXH72ZSJINHUNZXFB" --data "url=https://heatchek-inc.herokuapp.com/api/add-event&events[]=invitee.created" https://calendly.com/api/v1/hooks)
-- [ ] Write a bash script to create a subscription via curl on an EC2 Amazon Linux instance AMI
-- [ ] Ensure a proper Webhook subscription is created and works based off new signaled events (since it doesn't work on localhost)
-- [ ] Add terms of condition to service on the events for each variant of services offered to ensure that brokers and their associates know all photography and work done is property of HeatChek inc.
-- [ ] Add stripe payment integration
 
 
 # Employee Application Nice to Have
@@ -88,18 +83,24 @@
 - [X] Create a calendar component to schedule something minimum one week in the future to have a field specialist
 - [X] Payment info via stripe
 - [X] Create Client DB Tables (Include Brokerage information)
-- [X] Text based authentication to avoid users from
-- [ ] 45 different event varieties
- remebering passwords and username/emails
+- [X] Text based authentication to avoid users from remebering passwords and username/emails
+- [X] Need a contact page
+- [X] Basic Landing Page with Company info in footer
+- [X] Schedule with us on top nav
+- [X] Basic Landing Page to find and schedule more jobs
+- [X] Auth to allow customers to activate and deactivate prior listing tour links at will
+- [X] Create form to allow client to select what kind of services they want. At the end when we schedule we will need to add stripe payment integration.
+- [X] Add stripe payment integration
+- [ ] Allow management of content and events in portal
+- [ ] Need to be able to complete / mark jobs as completed, ignored, or cancelled
+- [ ] Component to view job details aka (location of house, square footage, expected earnings, etc...)
+- [ ] Add terms of condition to service on the events for each variant of services offered to ensure that brokers and their associates know all photography and work done is property of HeatChek inc.
+- NOTE: 45 different event varieties
+
+
+# Client Application Nice to Have
 - [ ] Create Embedded Signing Ceremony experience with docusign node client
 - [ ] Query docusign after redirect uri is hit to verify if a signature has been provided
  come out and service the property
-- [ ] Need a contact page
-- [ ] Basic Landing Page with Company info in footer
-- [ ] Schedule with us on top nav
-- [ ] Need to be able to complete / mark jobs as completed, ignored, or cancelled
-- [ ] Component to view job details aka (location of house, square footage, expected earnings, etc...)
-- [ ] Basic Landing Page to find and schedule more jobs
-- [ ] Auth to allow customers to activate and deactivate prior listing tour links at will
-- [ ] Create form to allow client to select what kind of services they want. At the end when we schedule we will need to add docusign and stripe payment integration.
-- [ ] Add stripe payment integration
+ - [ ] Nice to have DocuSign integration for scheduling
+ - [ ] Add ACH payment integration via stripe and plaid
