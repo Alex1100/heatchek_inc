@@ -40,7 +40,7 @@ const pay = async (request, response) => {
     } = request.body;
     const fetchedCustomer = await employeeDBClient.query(getCustomerByIdSQL({customerId: customer_id}));
     // console.log('CUSTOMER IS: ', customerData.rows[0]);
-    if (!customerData) {
+    if (!fetchedCustomer) {
       throw new Error('Unable to make a payment for a customer that is not in our system.')
     }
     const customer = fetchedCustomer.rows[0];
