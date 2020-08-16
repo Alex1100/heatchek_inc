@@ -13,7 +13,7 @@ if (process.env.NODE_ENV !== "PROD") {
   stripe = stripeLib(process.env.LIVE_STRIPE_PRIVATE_KEY);
 }
 
-function generateResponse(response, intent, customerData) {
+async function generateResponse(response, intent, customerData) {
   // console.log('RESPONSE IS: ', response);
   // console.log('INTENT IS: ', intent);
   if (intent.status === 'succeeded') {
