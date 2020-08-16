@@ -8,7 +8,6 @@ const cors = require('cors')
 const debug = require('debug')('app:http');
 const session = require('express-session');
 require('dotenv').config({path: path.join(__dirname, '../config/.env')});
-const stripe = require('stripe')('sk_test_51H1JQSDch1Kb1j6wPTtQ0Sua7HEo6rXKdAAzWojWHrU1X0UKtzWQyHgcP0Plm2fFicOm9ovmPmDYqXWP5Y7KygFD00lTmOWnNk');
 
 const routes = require('./routes/router');
 const app = express();
