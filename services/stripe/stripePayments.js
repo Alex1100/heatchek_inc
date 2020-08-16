@@ -5,7 +5,7 @@ const stripeLib = require('stripe');
 let stripe;
 
 const { businessEventVariants } = require('../business_events');
-const { getCustomerEventsSQL, getCustomerByIdSQL, employeeDBClient } = require('../../database');
+const { updateEventPaid, getCustomerEventsSQL, getCustomerByIdSQL, employeeDBClient } = require('../../database');
 
 if (process.env.NODE_ENV !== "PROD") {
   stripe = stripeLib(process.env.TEST_STRIPE_API_SECRET);
@@ -19,7 +19,11 @@ function generateResponse(response, intent, customerData) {
   if (intent.status === 'succeeded') {
     console.log('CUSTOMER DATA IS: ', customerData);
     // Handle post-payment fulfillment
-    return response.send({ success: true, customer: customerData.customer, customerEvents: customerData.customerEvents });
+    await employeeDBClient.query(updateEventPaid({event_id: customerData.event_id }));
+    const fetchedCustomerEvents = await employeeDBClient.query(getCustomerEventsSQL({customerId: customerData.customer.id}));
+    const customerEvents = fetchedCustomerEvents.rows;
+
+    return response.send({ success: true, customer: customerData.customer, customerEvents });
   } else if (intent.status === 'requires_action') {
     // Tell the client to handle the action
     return response.send({
@@ -37,6 +41,7 @@ const pay = async (request, response) => {
     let intent;
     const {
       customer_id,
+      event_id,
     } = request.body;
     const fetchedCustomer = await employeeDBClient.query(getCustomerByIdSQL({customerId: customer_id}));
     // console.log('CUSTOMER IS: ', customerData.rows[0]);
@@ -44,10 +49,6 @@ const pay = async (request, response) => {
       throw new Error('Unable to make a payment for a customer that is not in our system.')
     }
     const customer = fetchedCustomer.rows[0];
-
-    const fetchedCustomerEvents = await employeeDBClient.query(getCustomerEventsSQL({customerId: customer_id}));
-    const customerEvents = fetchedCustomerEvents.rows;
-
     if (request.body.payment_method_id) {
       // Create the PaymentIntent
       intent = await stripe.paymentIntents.create({
@@ -63,7 +64,7 @@ const pay = async (request, response) => {
     }
     // Send the response to the client
     // console.log('ABOUT TO GENERATE RESPONSE: ', {response, intent});
-    return generateResponse(response, intent, { customer, customerEvents });
+    return generateResponse(response, intent, { customer, event_id });
   }  catch (e) {
     console.log('ERROR IS: ', e);
     if (e.type === 'StripeCardError') {

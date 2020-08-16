@@ -7,6 +7,12 @@ VALUES (${values})
 RETURNING *
 `;
 
+const updateEventPaid = ({ event_id }) => `
+  UPDATE events
+  SET paid_in_full = true
+  WHERE id = ${event_id}
+`; 
+
 const customerCancelEventSQL = ({
   eventId,
   cancelReason,
@@ -55,4 +61,5 @@ module.exports = {
   customerRescheduleEventSQL,
   employeeCancelEventSQL,
   eventOverlappingSQL,
+  updateEventPaid,
 }
