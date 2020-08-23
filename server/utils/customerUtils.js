@@ -4,7 +4,7 @@ const standardizePhoneNumber = (mobileNumber) => {
   let formattedNumber = '';
 
   if (splitPhone) {
-    formattedNumber = `+1 (${mobileNuber.slice(0, 3)}) ${mobileNumber.slice(3)}`;
+    formattedNumber = `+1 (${mobileNumber.slice(0, 3)}) ${mobileNumber.slice(3)}`;
   } else if (splitPhoneWithCountryCode) {
     formattedNumber = `+${mobileNumber.slice(0, 1)} (${mobileNumber.slice(1, 4)}) ${mobileNumber.slice(4)}`;
   } else {
