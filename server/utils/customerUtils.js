@@ -1,4 +1,4 @@
-export const standardizePhoneNumber = (mobileNumber) => {
+const standardizePhoneNumber = (mobileNumber) => {
   const splitPhone = mobileNumber.length === 10;
   const splitPhoneWithCountryCode = mobileNumber.length === 11;
   let formattedNumber = '';
