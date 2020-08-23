@@ -8,12 +8,12 @@ const createCustomerEventSQL = ({
 `;
 
 const getCustomerEventsSQL = ({
-  customerId,
+  customer_id,
 }) => `
   SELECT * FROM customer_events
   LEFT JOIN events
   ON customer_events.event_id = events.id
-  WHERE customer_events.customer_id = ${customerId}
+  WHERE customer_events.customer_id = ${customer_id}
 `;
 
 const getCustomerEventSQL = ({
