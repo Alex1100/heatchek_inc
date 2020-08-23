@@ -7,7 +7,7 @@ const {
   getCustomerByPhoneSQL,
 } = require('../../database');
 
-const { standardizePhoneNumber } = require('../../server/utils');
+const { standardizePhoneNumber } = require('../../server/utils/customerUtils');
 
 const testSmsLogin = async (req, res) => {
   try {

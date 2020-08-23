@@ -1,3 +1,5 @@
+const customerUtils = require('./customerUtils');
+
 module.exports = {
-  ...require('./customerUtils'),
+  ...customerUtils,
 };

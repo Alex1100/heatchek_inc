@@ -15,5 +15,5 @@ const standardizePhoneNumber = (mobileNumber) => {
 };
 
 module.exports = {
-  ...standardizePhoneNumber,
+  standardizePhoneNumber,
 };
