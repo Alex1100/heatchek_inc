@@ -14,6 +14,8 @@ const {
 
 const { businessEventVariants } = require('../../services');
 
+const { standardizePhoneNumber } = require('../utils');
+
 const addEvent = async (req, res) => {
   try {
     const {
@@ -34,7 +36,7 @@ const addEvent = async (req, res) => {
     const customerArgs = {
       first_name: firstName,
       last_name: lastName,
-      mobile_number: mobileNumber,
+      mobile_number: standardizePhoneNumber(mobileNumber),
       email,
       business: businessName,
     };
@@ -71,6 +73,8 @@ const addEvent = async (req, res) => {
       // return error here that the selected event date + time is currently not available
       throw new Error({message: `That date is not available.`});
     }
+    console.log('FORMATTED CELL IS: ', standardizePhoneNumber(mobileNumber));
+
 
     const createdEvent = await employeeDBClient.query(createEventSQL(eventArgs));
     const customerEvent = await employeeDBClient.query(createCustomerEventSQL({
