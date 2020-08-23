@@ -40,7 +40,7 @@ const addEvent = async (req, res) => {
     };
     let createdCustomer;
     const existingCustomer = await employeeDBClient.query(getCustomerByEmailSQL({email}))
-
+    console.log('EXISTING CUSTOMER IS: ', existingCustomer.rows[0])
     if (!existingCustomer) {
       createdCustomer = await employeeDBClient.query(createCustomerSQL(customerArgs));
     } else {
