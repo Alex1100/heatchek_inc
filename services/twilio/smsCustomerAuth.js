@@ -92,7 +92,7 @@ const verifySmsLogin = async (req, res) => {
 
     const isVerified = await twilioClient.verify.services(process.env.SMS_AUTH_SERVICE_SID)
       .verificationChecks
-      .create({to: mobileNumber, code: verificationCode});
+      .create({to: client.rows[0].mobile_number, code: verificationCode});
 
     // get customer jobs as well
     // and send the schedule over to
