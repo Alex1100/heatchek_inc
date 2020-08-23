@@ -57,7 +57,7 @@ const testVerifySmsLogin = async (req, res) => {
 const smsLogin = async (req, res) => {
   try {
     const { mobileNumber } = req.body;
-
+    console.log('STANDARDIZE IS: ', standardizePhoneNumber, standardizePhoneNumber(mobileNumber));
     const customer = await employeeDBClient.query(getCustomerByPhoneSQL({mobileNumber: standardizePhoneNumber(mobileNumber)}));
 
     const verification =
