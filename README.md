@@ -96,6 +96,7 @@
 - [ ] Component to view job details aka (location of house, square footage, expected earnings, etc...)
 - [ ] Add terms of condition to service on the events for each variant of services offered to ensure that brokers and their associates know all photography and work done is property of HeatChek inc.
 - NOTE: 45 different event varieties
+- [ ] Add Pagination to the events queries
 
 
 # Client Application Nice to Have
@@ -104,3 +105,4 @@
  come out and service the property
  - [ ] Nice to have DocuSign integration for scheduling
  - [ ] Add ACH payment integration via stripe and plaid
+ - [ ] Add Pagination to state within MySchedulePage component
