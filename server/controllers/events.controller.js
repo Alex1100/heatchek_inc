@@ -47,7 +47,7 @@ const addEvent = async (req, res) => {
       createdCustomer = existingCustomer;
     }
 
-    console.log('CREATED CUSTOMER IS: ', createdCustomer);
+    console.log('CREATED CUSTOMER IS: ', createdCustomer.rows[0]);
 
     const event_start = new Date(`${selectedDate} ${selectedTimeOfService}`).getTime() / 1000;
     const event_end = (new Date(`${selectedDate} ${selectedTimeOfService}`).getTime() + duration) / 1000;
