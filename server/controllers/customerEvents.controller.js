@@ -9,6 +9,7 @@ const {
 
 const customerEventList = async (req, res) => {
   try {
+    console.log('CUSTOMER PARAMS ARE: ', req.params);
     const {
       customerId: customer_id,
     } = req.params;
