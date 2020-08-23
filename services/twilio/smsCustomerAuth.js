@@ -7,6 +7,8 @@ const {
   getCustomerByPhoneSQL,
 } = require('../../database');
 
+const { standardizePhoneNumber } = require('../../server/utils');
+
 const testSmsLogin = async (req, res) => {
   try {
     const verification =
@@ -56,7 +58,7 @@ const smsLogin = async (req, res) => {
   try {
     const { mobileNumber } = req.body;
 
-    const customer = await employeeDBClient.query(getCustomerByPhoneSQL({mobileNumber}));
+    const customer = await employeeDBClient.query(getCustomerByPhoneSQL({mobileNumber: standardizePhoneNumber(mobileNumber)}));
 
     const verification =
       await twilioClient
@@ -86,7 +88,7 @@ const verifySmsLogin = async (req, res) => {
     } = req.body;
     console.log('AUTH INFO: ', mobileNumber, verificationCode);
 
-    const client = await employeeDBClient.query(getCustomerByPhoneSQL({mobileNumber}));
+    const client = await employeeDBClient.query(getCustomerByPhoneSQL({mobileNumber: standardizePhoneNumber(mobileNumber)}));
 
     const isVerified = await twilioClient.verify.services(process.env.SMS_AUTH_SERVICE_SID)
       .verificationChecks
