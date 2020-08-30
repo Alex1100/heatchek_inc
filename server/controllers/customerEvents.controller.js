@@ -40,7 +40,7 @@ const customerEventList = async (req, res) => {
       }));
     }
 
-    console.log('CUSTOMER EVENTS ARE: ', customerEvents.rows);
+    console.log('CUSTOMER EVENTS ARE: ', customerEvents.rows.length);
 
     res.status(200).send({
       customerEvents: customerEvents.rows,
