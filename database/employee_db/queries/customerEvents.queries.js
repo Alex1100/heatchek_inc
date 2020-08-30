@@ -30,7 +30,7 @@ const getPaginatedCustomerEventsSQL = ({
   WHERE actual.customer_id = ${customer_id}
   GROUP BY actual.id, events.id
   ORDER BY events.created_at
-  LIMIT 10
+  LIMIT 5
   OFFSET ${pageNumber ? pageNumber - 1 : 0}
 `;
 
