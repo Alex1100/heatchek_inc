@@ -18,19 +18,16 @@ async function generateResponse(response, intent, customerData) {
   if (intent.status === 'succeeded') {
     // Handle post-payment fulfillment
     await employeeDBClient.query(updateEventPaid({event_id: customerData.event_id }));
-    const fetchedCustomerEvents = await employeeDBClient.query(getCustomerEventsSQL({customerId: customerData.customer.id}));
+    const fetchedCustomerEvents = await employeeDBClient.query(getCustomerEventsSQL({customer_id: customerData.customer.id}));
     const customerEvents = fetchedCustomerEvents.rows;
-    console.log('GETS HERE BEFORE SENDING RESPONSE...');
     return response.send({ success: true, customer: customerData.customer, customerEvents });
   } else if (intent.status === 'requires_action') {
-    console.log('GETS HERE BEFORE TELING CLIENT TO HANDLE ACTION');
     // Tell the client to handle the action
     return response.send({
       requiresAction: true,
       clientSecret: intent.client_secret
     });
   } else {
-    console.log('LANDS IN ERROR IN GENERATE RESPONSE...');
     // Any other status would be unexpected, so error
     return response.status(500).send({ error: 'Unexpected status ' + intent.status });
   }
@@ -49,7 +46,6 @@ const pay = async (request, response) => {
       throw new Error('Unable to make a payment for a customer that is not in our system.')
     }
     const customer = fetchedCustomer.rows[0];
-    console.log('GETS HERE BEFORE PAYMENT...');
     if (request.body.payment_method_id) {
       // Create the PaymentIntent
       intent = await stripe.paymentIntents.create({
@@ -63,7 +59,6 @@ const pay = async (request, response) => {
     } else if (request.body.payment_intent_id) {
       intent = await stripe.paymentIntents.confirm(request.body.payment_intent_id);
     }
-    console.log('GETS HERE BEFORE SENDING PAYMENT...');
     // Send the response to the client
     return generateResponse(response, intent, { customer, event_id });
   }  catch (e) {
