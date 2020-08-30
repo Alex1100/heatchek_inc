@@ -23,6 +23,11 @@ const customerEventList = async (req, res) => {
       throw new Error('Must include customer id');
     }
     let customerEvents;
+
+    console.log('SQL QUERY GENERATED IS: ', getPaginatedCustomerEventsSQL({
+      customer_id,
+      pageNumber,
+    }));
     if (pageNumber !== undefined) {
       customerEvents = await employeeDBClient.query(getPaginatedCustomerEventsSQL({
         customer_id,
@@ -32,7 +37,10 @@ const customerEventList = async (req, res) => {
       customerEvents = await employeeDBClient.query(getPaginatedCustomerEventsSQL({
         customer_id,
         pageNumber: 0,
-      }));    }
+      }));
+    }
+
+    console.log('CUSTOMER EVENTS ARE: ', customerEvents.rows);
 
     res.status(200).send({
       customerEvents: customerEvents.rows,
