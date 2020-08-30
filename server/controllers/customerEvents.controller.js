@@ -5,19 +5,31 @@ const {
   getActiveCustomerEventsSQL,
   getResolvedCustomerEventsSQL,
   getCancelledCustomerEventsSQL,
+  getPaginatedCustomerEventsSQL,
 } = require('../../database');
 
 const customerEventList = async (req, res) => {
   try {
     const {
       customerId: customer_id,
+      pageNumber,
     } = req.params;
 
     if (!customer_id) {
       throw new Error('Must include customer id');
     }
+    let customerEvents;
+    if (pageNumber !== undefined) {
+      customerEvents = await employeeDBClient.query(getPaginatedCustomerEventsSQL({
+        customer_id,
+        pageNumber,
+      }));
+    } else {
+      customerEvents = await employeeDBClient.query(getPaginatedCustomerEventsSQL({
+        customer_id,
+        pageNumber: 0,
+      }));    }
 
-    const customerEvents = await employeeDBClient.query(getCustomerEventsSQL({customer_id}));
     res.status(200).send({
       customerEvents: customerEvents.rows,
     });
