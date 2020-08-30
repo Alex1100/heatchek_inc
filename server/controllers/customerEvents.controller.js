@@ -12,8 +12,10 @@ const customerEventList = async (req, res) => {
   try {
     const {
       customerId: customer_id,
-      pageNumber,
     } = req.params;
+    const {
+      pageNumber,
+    } = req.query;
 
     console.log('PAGE NUMBER IS: ', pageNumber);
 
