@@ -15,6 +15,8 @@ const customerEventList = async (req, res) => {
       pageNumber,
     } = req.params;
 
+    console.log('PAGE NUMBER IS: ', pageNumber);
+
     if (!customer_id) {
       throw new Error('Must include customer id');
     }
