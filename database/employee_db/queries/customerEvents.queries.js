@@ -31,7 +31,7 @@ const getPaginatedCustomerEventsSQL = ({
   GROUP BY actual.id, events.id
   ORDER BY events.created_at
   LIMIT 5
-  OFFSET ${pageNumber ? pageNumber === 1 ? 0 : pageNumber * 5 : 0}
+  OFFSET ${pageNumber ? pageNumber === 1 ? 0 : (pageNumber - 1) * 5 : 0}
 `;
 
 const getCustomerEventSQL = ({
