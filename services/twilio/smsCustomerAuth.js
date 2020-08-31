@@ -86,7 +86,6 @@ const verifySmsLogin = async (req, res) => {
       mobileNumber,
       verificationCode,
     } = req.body;
-    console.log('AUTH INFO: ', mobileNumber, verificationCode);
 
     const client = await employeeDBClient.query(getCustomerByPhoneSQL({mobileNumber: standardizePhoneNumber(mobileNumber)}));
 
@@ -94,10 +93,6 @@ const verifySmsLogin = async (req, res) => {
       .verificationChecks
       .create({to: client.rows[0].mobile_number, code: verificationCode});
 
-    // get customer jobs as well
-    // and send the schedule over to
-    // the client side app
-    console.log('IS VERIFIED: ', isVerified);
 
     res.status(200).send({
       status: isVerified.status,
