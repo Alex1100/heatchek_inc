@@ -98,6 +98,14 @@ const editCustomerInfo = async (req, res) => {
       email,
       business,
     } = req.body;
+    console.log('SQL IS: ', editCustomerInfoSQL({
+      user_id,
+      firstName,
+      lastName,
+      mobileNumber,
+      email,
+      business,
+    }))
     const updatedEmployee = await employeeDBClient.query(editCustomerInfoSQL({
       user_id,
       firstName,
