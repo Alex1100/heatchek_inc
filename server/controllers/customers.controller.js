@@ -114,6 +114,8 @@ const editCustomerInfo = async (req, res) => {
       email,
       business,
     }));
+
+    console.log('YOOO: ', updatedEmployee.rows[0]);
     res.status(201).json({
       updatedEmployee: updatedEmployee.rows[0],
     });
