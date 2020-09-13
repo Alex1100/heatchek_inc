@@ -15,6 +15,7 @@ const {
   activeCustomerEventList,
   resolvedCustomerEventList,
   cancelledCustomerEventList,
+  editCustomerInfo,
 } = require('../controllers');
 
 const {
@@ -67,6 +68,12 @@ router.post('/sms-login', smsLogin);
 */
 router.post('/add-event', addEvent);
 router.post('/subscribe-to-webhook', subscribeToWebhooks);
+
+
+/**
+ * Users
+ */
+router.post('/updateCustomer', editCustomerInfo);
 
 router.get('/employee/:employeeId/jobs', employeeJobList);
 router.get('/employee/:employeeId/jobs/active', activeEmployeeJobList);

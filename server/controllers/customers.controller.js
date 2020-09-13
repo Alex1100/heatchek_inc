@@ -6,6 +6,7 @@ const {
   createCustomerSQL,
   updateCustomerLastLoginSQL,
   customerExistsSQL,
+  editCustomerInfoSQL,
   getCustomerByEmailSQL,
 } = require('../../database');
 
@@ -87,7 +88,36 @@ const customerLogin = async (req, res) => {
   }
 };
 
+const editCustomerInfo = async (req, res) => {
+  try {
+    const {
+      userId: user_id,
+      firstName,
+      lastName,
+      mobileNumber,
+      email,
+      business,
+    } = req.body;
+    const updatedEmployee = await employeeDBClient.query(editCustomerInfoSQL({
+      user_id,
+      firstName,
+      lastName,
+      mobileNumber,
+      email,
+      business,
+    }));
+    res.status(201).json({
+      updatedEmployee: updatedEmployee.rows[0],
+    });
+  } catch (e) {
+    res.status(401).json({
+      err: e,
+    });
+  }
+}
+
 module.exports = {
   customerSignup,
   customerLogin,
+  editCustomerInfo,
 }

@@ -84,6 +84,25 @@ const updateCustomerLastLoginSQL = ({
   WHERE id = ${user_id};
 `;
 
+const editCustomerInfoSQL = ({
+  user_id,
+  firstName,
+  lastName,
+  mobileNumber,
+  email,
+  business,
+}) => `
+  UPDATE customers
+  SET first_name = '${firstName}',
+  last_name = '${lastName}',
+  mobile_number = '${mobileNumber}',
+  email = '${email}',
+  business = '${business}',
+  updated_at = to_timestamp(${Date.now()} / 1000.0)
+  WHERE id = ${user_id}
+  RETURNING user_id, first_name, last_name, mobile_number, email, business;
+`;
+
 module.exports = {
   getCustomerByPhoneSQL,
   createCustomerSQL,
@@ -91,4 +110,5 @@ module.exports = {
   customerExistsSQL,
   getCustomerByEmailSQL,
   getCustomerByIdSQL,
+  editCustomerInfoSQL,
 };
