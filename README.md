@@ -91,13 +91,12 @@
 - [X] Auth to allow customers to activate and deactivate prior listing tour links at will
 - [X] Create form to allow client to select what kind of services they want. At the end when we schedule we will need to add stripe payment integration.
 - [X] Add stripe payment integration
-- [ ] Allow management of content and events in portal
-- [ ] Need to be able to complete / mark jobs as completed, ignored, or cancelled
-- [ ] Component to view job details aka (location of house, square footage, expected earnings, etc...)
-- [ ] Add terms of condition to service on the events for each variant of services offered to ensure that brokers and their associates know all photography and work done is property of HeatChek inc.
+- [X] Need to be able to complete / mark jobs as completed, ignored, or cancelled
+- [X] Component to view job details aka (location of house, square footage, expected earnings, etc...)
+- [X] Add terms of condition to service on the events for each variant of services offered to ensure that brokers and their associates know all photography and work done is property of HeatChek inc.
 - NOTE: 45 different event varieties
-- [ ] Add Pagination to the events queries
-
+- [X] Add Pagination to the events queries
+- [ ] Allow management of content and events in portal
 
 # Client Application Nice to Have
 - [ ] Create Embedded Signing Ceremony experience with docusign node client
@@ -105,4 +104,4 @@
  come out and service the property
  - [ ] Nice to have DocuSign integration for scheduling
  - [ ] Add ACH payment integration via stripe and plaid
- - [ ] Add Pagination to state within MySchedulePage component
+ - [X] Add Pagination to state within MySchedulePage component
