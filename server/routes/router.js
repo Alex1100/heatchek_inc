@@ -6,6 +6,7 @@ const {
   customerLogin,
   customerSignup,
   addEvent,
+  cancelEvent,
   employeeJobList,
   activeEmployeeJobList,
   resolvedEmployeeJobList,
@@ -68,6 +69,7 @@ router.post('/sms-login', smsLogin);
 */
 router.post('/add-event', addEvent);
 router.post('/subscribe-to-webhook', subscribeToWebhooks);
+router.put('/cancelEvent', cancelEvent);
 
 
 /**
@@ -84,7 +86,6 @@ router.get('/customer/:customerId/events/:eventId', customerEvent);
 router.get('/customer/:customerId/events/:eventId/active', activeCustomerEventList);
 router.get('/customer/:customerId/events/:eventId/resolved', resolvedCustomerEventList);
 router.get('/customer/:customerId/events/:eventId/cancelled', cancelledCustomerEventList);
-
 
 
 /**
