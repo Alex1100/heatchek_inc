@@ -96,7 +96,12 @@
 - [X] Add terms of condition to service on the events for each variant of services offered to ensure that brokers and their associates know all photography and work done is property of HeatChek inc.
 - NOTE: 45 different event varieties
 - [X] Add Pagination to the events queries
-- [ ] Allow management of content and events in portal
+- [X] Allow management of content and events in portal
+- [X] Allow Cancelling of scheduled events
+- [X] Allow Rescheduling of Paid/Scheduled Events
+- [ ] Initiate Refunds for events that get cancelled and are within the policy
+time frame for a refund
+- [ ] Charge and reuse the Scheduler component to reschedule an event
 
 # Client Application Nice to Have
 - [ ] Create Embedded Signing Ceremony experience with docusign node client

@@ -16,6 +16,25 @@ const getCustomerEventsSQL = ({
   WHERE customer_events.customer_id = ${customer_id}
 `;
 
+const getPaginatedCancelledCustomerEventsSQL = ({
+  customer_id,
+  pageNumber,
+}) => `
+  SELECT 
+    count(meta.id) as exact_count,
+    actual.*,
+    events.*
+  FROM customer_events meta, customer_events actual
+  LEFT JOIN events
+  ON actual.event_id = events.id
+  WHERE actual.customer_id = ${customer_id}
+  AND events.cancelled = true
+  GROUP BY actual.id, events.id
+  ORDER BY events.created_at
+  LIMIT 5
+  OFFSET ${pageNumber ? pageNumber === 1 ? 0 : (pageNumber - 1) * 5 : 0}
+`;
+
 const getPaginatedCustomerEventsSQL = ({
   customer_id,
   pageNumber,
@@ -86,4 +105,5 @@ module.exports = {
   getResolvedCustomerEventsSQL,
   getCancelledCustomerEventsSQL,
   getPaginatedCustomerEventsSQL,
+  getPaginatedCancelledCustomerEventsSQL,
 }
