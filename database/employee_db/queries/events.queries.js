@@ -21,7 +21,7 @@ UPDATE events
 SET cancelled = true,
 cancel_reason = 'CUSTOMER CANCEL: ${cancelReason}',
 cancelled_at = NOW()
-WHERE event.id = ${eventId}
+WHERE id = ${eventId}
 `;
 
 const customerRescheduleEventSQL = ({
@@ -31,7 +31,7 @@ const customerRescheduleEventSQL = ({
 UPDATE events
 SET start_time = to_timestamp(${start_time}),
 end_time = to_timestamp(${start_time}) + interval '4 hours'
-WHERE event.id = ${eventId}
+WHERE id = ${eventId}
 `;
 
 const employeeCancelEventSQL = ({
@@ -42,7 +42,7 @@ UPDATE events
 SET cancelled = true,
 cancel_reason = 'EMPLOYEE CANCEL: ${cancelReason}',
 cancelled_at = NOW()
-WHERE event.id = ${eventId}
+WHERE id = ${eventId}
 `;
 
 const eventOverlappingSQL = ({
