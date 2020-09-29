@@ -100,6 +100,7 @@ const cancelEvent = async (req, res) => {
       eventId,
       cancelReason,
     } = req.body;
+    console.log('IT REACHES HERE IN CANCEL: ', cancelReason);
 
     const cancellationQuery =
       cancelledBy === "customer" ?
