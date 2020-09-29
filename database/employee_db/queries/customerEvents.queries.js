@@ -86,5 +86,4 @@ module.exports = {
   getResolvedCustomerEventsSQL,
   getCancelledCustomerEventsSQL,
   getPaginatedCustomerEventsSQL,
-  getPaginatedCancelledCustomerEventsSQL,
 }
