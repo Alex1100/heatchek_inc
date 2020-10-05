@@ -41,6 +41,14 @@ end_time = to_timestamp(${start_time}) + interval '4 hours'
 WHERE id = ${eventId}
 `;
 
+const getEventById = ({
+  eventId,
+}) = `
+SELECT * FROM events
+WHERE id = ${eventId}
+RETURNING *
+`;
+
 const employeeCancelEventSQL = ({
   eventId,
   cancelReason,
@@ -70,4 +78,5 @@ module.exports = {
   eventOverlappingSQL,
   updateEventPaid,
   updateEventNotes,
+  getEventById,
 }
