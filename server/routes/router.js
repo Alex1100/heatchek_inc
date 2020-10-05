@@ -70,8 +70,8 @@ router.post('/sms-login', smsLogin);
 */
 router.post('/add-event', addEvent);
 router.post('/subscribe-to-webhook', subscribeToWebhooks);
-router.put('/cancelEvent', cancelEvent);
-router.put('/updateEvent', updateEvent);
+router.put('/cancel-event', cancelEvent);
+router.put('/update-event', updateEvent);
 
 /**
  * Users
