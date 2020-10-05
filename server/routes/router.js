@@ -17,6 +17,7 @@ const {
   resolvedCustomerEventList,
   cancelledCustomerEventList,
   editCustomerInfo,
+  updateEvent,
 } = require('../controllers');
 
 const {
@@ -70,7 +71,7 @@ router.post('/sms-login', smsLogin);
 router.post('/add-event', addEvent);
 router.post('/subscribe-to-webhook', subscribeToWebhooks);
 router.put('/cancelEvent', cancelEvent);
-
+router.put('/updateEvent', updateEvent);
 
 /**
  * Users

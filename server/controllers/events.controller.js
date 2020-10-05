@@ -93,6 +93,20 @@ const addEvent = async (req, res) => {
   }
 };
 
+const updateEvent = async (req, res) => {
+  try {
+    const {
+      eventId: event_id,
+      eventAdditionalDetails: event_additional_details
+    } = req.body;
+    console.log('EVENT DETAILS: ', { event_id, event_additional_details });
+    const updatedEvent = await employeeDBClient.query(updateEventNotes({event_id, event_additional_details}));
+    res.status(204).send({updatedEvent: updatedEvent.rows[0]});
+  } catch (e) {
+    res.status(400).send({error: e});
+  }
+}
+
 const cancelEvent = async (req, res) => {
   try {
     const {
@@ -152,4 +166,5 @@ module.exports = {
   addEvent,
   cancelEvent,
   rescheduleEvent,
+  updateEvent,
 }

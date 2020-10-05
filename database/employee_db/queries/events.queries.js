@@ -13,6 +13,12 @@ const updateEventPaid = ({ event_id }) => `
   WHERE id = ${event_id}
 `; 
 
+const updateEventNotes =({ event_id, event_additional_details }) => `
+  UPDATE events
+  SET event_additional_details = '${event_additional_details}'
+  WHERE id = ${event_id}
+`;
+
 const customerCancelEventSQL = ({
   eventId,
   cancelReason,
@@ -62,4 +68,5 @@ module.exports = {
   employeeCancelEventSQL,
   eventOverlappingSQL,
   updateEventPaid,
+  updateEventNotes,
 }
