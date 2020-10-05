@@ -17,6 +17,7 @@ const updateEventNotes =({ event_id, event_additional_details }) => `
   UPDATE events
   SET event_additional_details = '${event_additional_details}'
   WHERE id = ${event_id}
+  RETURNING *
 `;
 
 const customerCancelEventSQL = ({
