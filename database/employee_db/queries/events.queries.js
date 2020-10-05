@@ -43,7 +43,7 @@ WHERE id = ${eventId}
 
 const getEventById = ({
   eventId,
-}) = `
+}) => `
 SELECT * FROM events
 WHERE id = ${eventId}
 RETURNING *
