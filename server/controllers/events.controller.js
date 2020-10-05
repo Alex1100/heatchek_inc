@@ -96,11 +96,11 @@ const addEvent = async (req, res) => {
 const updateEvent = async (req, res) => {
   try {
     const {
-      eventId: event_id,
-      eventAdditionalDetails: event_additional_details
+      eventId,
+      eventAdditionalDetails,
     } = req.body;
-    console.log('EVENT DETAILS: ', { event_id, event_additional_details });
-    const updatedEvent = await employeeDBClient.query(updateEventNotes({event_id, event_additional_details}));
+    console.log('EVENT DETAILS: ', { event_id: eventId, event_additional_details: eventAdditionalDetails });
+    const updatedEvent = await employeeDBClient.query(updateEventNotes({event_id: eventId, event_additional_details: eventAdditionalDetails}));
     res.status(204).send({updatedEvent: updatedEvent.rows[0]});
   } catch (e) {
     res.status(400).send({error: e});
