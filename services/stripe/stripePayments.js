@@ -6,6 +6,7 @@ let stripe;
 
 const { businessEventVariants } = require('../business_events');
 const { updateEventPaid, getCustomerEventsSQL, getCustomerByIdSQL, employeeDBClient } = require('../../database');
+const { default: Axios } = require('axios');
 
 // if (process.env.NODE_ENV !== "PROD") {
 // making sure I only use the test account right now
@@ -16,6 +17,7 @@ stripe = stripeLib(process.env.TEST_STRIPE_API_SECRET);
 
 async function generateResponse(response, intent, customerData) {
   if (intent.status === 'succeeded') {
+    console.log('INTENT IS: ', intent);
     // Handle post-payment fulfillment
     await employeeDBClient.query(updateEventPaid({event_id: customerData.event_id }));
     const fetchedCustomerEvents = await employeeDBClient.query(getCustomerEventsSQL({customer_id: customerData.customer.id}));
@@ -72,6 +74,13 @@ const pay = async (request, response) => {
     }
   }
 };
+
+const refund = async (req, res) => {
+
+  const refund = await stripe.refunds.create({
+    charge: 'ch_1HYXnA2eZvKYlo2CWImNPiYa',
+  });
+}
 
 module.exports = {
   pay,
