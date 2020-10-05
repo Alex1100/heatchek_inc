@@ -19,7 +19,7 @@ async function generateResponse(response, intent, customerData) {
   if (intent.status === 'succeeded') {
     console.log('INTENT IS: ', intent);
     // Handle post-payment fulfillment
-    await employeeDBClient.query(updateEventPaid({event_id: customerData.event_id }));
+    await employeeDBClient.query(updateEventPaid({event_id: customerData.event_id, payment_intent_id: intent.id }));
     const fetchedCustomerEvents = await employeeDBClient.query(getCustomerEventsSQL({customer_id: customerData.customer.id}));
     const customerEvents = fetchedCustomerEvents.rows;
     return response.send({ success: true, customer: customerData.customer, customerEvents });
@@ -76,12 +76,26 @@ const pay = async (request, response) => {
 };
 
 const refund = async (req, res) => {
+  try {
+    const {
+      eventId,
+    } = req.body;
 
-  const refund = await stripe.refunds.create({
-    charge: 'ch_1HYXnA2eZvKYlo2CWImNPiYa',
-  });
+    const eventToRefund = await employeeDBClient.query(getEvent({
+      event_id: eventId,
+    }));
+
+    const refund = await stripe.refunds.create({
+      payment_intent: eventToRefund.rows[0].paymentIntent,
+    });
+
+    res.status(201).send({ refund });
+  } catch (e) {
+    res.status(400).send({ error: e });
+  }
 }
 
 module.exports = {
   pay,
+  refund,
 }

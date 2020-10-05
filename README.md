@@ -21,7 +21,7 @@
 
 # Client Application Must Have
 - [X] Create a calendar event for each type of transaction on Calendly
--  [X] One for each range of square footage <= 2000, <= 3500, <= 5999
+- [X] One for each range of square footage <= 2000, <= 3500, <= 5999
 - [X] Also for each size variant, we must also add in the potential charges for each combination of services: with drone pictures, with drone videos, with drone pictures and videos, with 2d floor plan, with 3d and 2d floor plan, with 3d floor plan, etc...
 - [X] <= 2000 sqft
   1. with drone pictures
@@ -99,9 +99,13 @@
 - [X] Allow management of content and events in portal
 - [X] Allow Cancelling of scheduled events
 - [X] Allow Rescheduling of Paid/Scheduled Events
+- [X] Allow for refunds on the backend API
 - [ ] Initiate Refunds for events that get cancelled and are within the policy
-time frame for a refund
+time frame for a refund on the front end
 - [ ] Charge and reuse the Scheduler component to reschedule an event
+- [ ] Add a matterport tour link to the event table as a new column
+- [ ] Use AWS S3 to store business / agents logos
+
 
 # Client Application Nice to Have
 - [ ] Create Embedded Signing Ceremony experience with docusign node client

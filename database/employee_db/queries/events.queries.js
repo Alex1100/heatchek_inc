@@ -7,9 +7,10 @@ VALUES (${values})
 RETURNING *
 `;
 
-const updateEventPaid = ({ event_id }) => `
+const updateEventPaid = ({ event_id, payment_intent_id }) => `
   UPDATE events
-  SET paid_in_full = true
+  SET paid_in_full = true,
+  payment_intent_id = '${payment_intent_id}'
   WHERE id = ${event_id}
 `; 
 
