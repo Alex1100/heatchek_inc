@@ -97,13 +97,13 @@ const updateEvent = async (req, res) => {
   try {
     console.log('EVENT DETAILS: ', req.body.eventId, req.body.eventAdditionalDetails);
 
-    const {
-      eventId,
-      eventAdditionalDetails,
-    } = req.body;
-    console.log('EVENT DETAILS: ', updateEventNotes({event_id: eventId, event_additional_details: eventAdditionalDetails}));
-    const updatedEvent = await employeeDBClient.query(updateEventNotes({event_id: eventId, event_additional_details: eventAdditionalDetails}));
-    res.status(204).send({updatedEvent: updatedEvent.rows[0]});
+    // const {
+    //   eventId,
+    //   eventAdditionalDetails,
+    // } = req.body;
+    console.log('EVENT DETAILS: ', updateEventNotes({event_id: req.body.eventId, event_additional_details: req.body.eventAdditionalDetails}));
+    await employeeDBClient.query(updateEventNotes({event_id: req.body.eventId, event_additional_details: req.body.eventAdditionalDetails}));
+    res.status(204);
   } catch (e) {
     res.status(400).send({error: e});
   }
