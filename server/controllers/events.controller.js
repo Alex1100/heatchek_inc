@@ -10,6 +10,7 @@ const {
   getCustomerByEmailSQL,
   eventOverlappingSQL,
   createCustomerEventSQL,
+  updateEventNotes,
 } = require('../../database');
 
 const { businessEventVariants } = require('../../services');
@@ -95,14 +96,13 @@ const addEvent = async (req, res) => {
 
 const updateEvent = async (req, res) => {
   try {
-    console.log('EVENT DETAILS: ', req.body.eventId, req.body.eventAdditionalDetails);
-
-    // const {
-    //   eventId,
-    //   eventAdditionalDetails,
-    // } = req.body;
-    console.log('EVENT DETAILS: ', updateEventNotes({event_id: req.body.eventId, event_additional_details: req.body.eventAdditionalDetails}));
-    await employeeDBClient.query(updateEventNotes({event_id: req.body.eventId, event_additional_details: req.body.eventAdditionalDetails}));
+    // console.log('EVENT DETAILS: ', req.body.eventId, req.body.eventAdditionalDetails);
+    const {
+      eventId: event_id,
+      eventAdditionalDetails: event_additional_details,
+    } = req.body;
+    console.log('EVENT DETAILS: ', updateEventNotes({event_id, event_additional_details }));
+    await employeeDBClient.query(updateEventNotes({event_id, event_additional_details }));
     res.status(204);
   } catch (e) {
     res.status(400).send({error: e});
