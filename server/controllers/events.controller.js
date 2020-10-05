@@ -74,8 +74,6 @@ const addEvent = async (req, res) => {
       // return error here that the selected event date + time is currently not available
       throw new Error({message: `That date is not available.`});
     }
-    console.log('FORMATTED CELL IS: ', standardizePhoneNumber(mobileNumber));
-
 
     const createdEvent = await employeeDBClient.query(createEventSQL(eventArgs));
     const customerEvent = await employeeDBClient.query(createCustomerEventSQL({
@@ -96,15 +94,14 @@ const addEvent = async (req, res) => {
 
 const updateEvent = async (req, res) => {
   try {
-    // console.log('EVENT DETAILS: ', req.body.eventId, req.body.eventAdditionalDetails);
     const {
-      eventId: event_id,
-      eventAdditionalDetails: event_additional_details,
+      eventId,
+      eventAdditionalDetails,
     } = req.body;
-    console.log('EVENT DETAILS: ', updateEventNotes({event_id, event_additional_details }));
+
     await employeeDBClient.query(updateEventNotes({
-      event_id,
-      event_additional_details,
+      event_id: eventId,
+      event_additional_details: eventAdditionalDetails,
     }));
     res.status(204).send({ok: 'ok'});
   } catch (e) {
@@ -119,8 +116,6 @@ const cancelEvent = async (req, res) => {
       eventId,
       cancelReason,
     } = req.body;
-    console.log('IT REACHES HERE IN CANCEL: ', cancelReason);
-
     const cancellationQuery =
       cancelledBy === "customer" ?
         customerCancelEventSQL :
