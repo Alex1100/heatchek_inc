@@ -95,6 +95,8 @@ const addEvent = async (req, res) => {
 
 const updateEvent = async (req, res) => {
   try {
+    console.log('EVENT DETAILS: ', req.body.eventId, req.body.eventAdditionalDetails);
+
     const {
       eventId,
       eventAdditionalDetails,
