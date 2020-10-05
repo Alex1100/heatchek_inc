@@ -100,7 +100,7 @@ const updateEvent = async (req, res) => {
       eventAdditionalDetails,
     } = req.body;
 
-    const updatedEvent = await employeeDBClient.query(updateEventNotes({
+    await employeeDBClient.query(updateEventNotes({
       event_id: eventId,
       event_additional_details: eventAdditionalDetails,
     }));
