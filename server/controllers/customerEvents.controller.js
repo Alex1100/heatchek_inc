@@ -66,7 +66,7 @@ const customerEvent = async (req, res) => {
 
     const customerEvent = await employeeDBClient.query(getCustomerEventSQL({customer_id, event_id}));
     res.status(200).send({
-      customerEvent: customerEvents.rows[0],
+      customerEvent: customerEvent.rows[0],
     });
   } catch (error) {
     console.log('ERROR FETCHING CUSTOMER EVENTS: ', error);
