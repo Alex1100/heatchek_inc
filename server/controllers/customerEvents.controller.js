@@ -60,7 +60,7 @@ const customerEvent = async (req, res) => {
       customerId: customer_id,
       eventId: event_id,
     } = req.params;
-
+    console.log('CUSTOMER ID IS: ', customerId, req.params);
     if (!customerId || !event_id) {
       throw new Error('Must include both customer id and event id');
     }
