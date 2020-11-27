@@ -35,13 +35,13 @@ const getPaginatedCustomerEventsSQL = ({
 `;
 
 const getCustomerEventSQL = ({
-  customerId,
+  customer_id,
   event_id
 }) => `
   SELECT * FROM customer_events
   LEFT JOIN events
   ON customer_events.event_id = events.id
-  WHERE customer_events.customer_id = ${customerId}
+  WHERE customer_events.customer_id = ${customer_id}
   AND customer_events.event_id = ${event_id}
 `;
 
