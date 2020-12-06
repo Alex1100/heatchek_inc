@@ -101,14 +101,14 @@
 - [X] Allow Rescheduling of Paid/Scheduled Events
 - [X] Allow for refunds on the backend API
 - [X] Add a matterport tour link to the event table as a new column
+- [X] Rethink pricing
+  a. Flat pricing to accomodate both residential and commercial
+- [X] UX around pricing could be better placed on main page by sections this way I could keep the pricing model for residential, strictly for residential and come up with a simpler solution for commercial
 - [ ] make an api call to the matterport_task_bot_server from the employee_app once a job has been marked complete to start the ETU process on the event
 - [ ] Initiate Refunds for events that get cancelled and are within the policy time frame for a refund on the front end
 - [ ] Charge and reuse the Scheduler component to reschedule an event
 - [ ] Use AWS S3 to store business / agents logos
 - [ ] Add custom styles based on Agent's / Brokers / Clients company uploaded logo primary colors
-- [ ] Rethink pricing
-  a. Flat pricing to accomodate both residential and commercial
-- [ ] UX around pricing could be better placed on main page by sections this way I could keep the pricing model for residential, strictly for residential and come up with a simpler solution for commercial
 
 
 # Client Application Nice to Have
