@@ -104,6 +104,7 @@
 - [X] Rethink pricing
   a. Flat pricing to accomodate both residential and commercial
 - [X] UX around pricing could be better placed on main page by sections this way I could keep the pricing model for residential, strictly for residential and come up with a simpler solution for commercial
+- [X] Add search functionality on customer events
 - [ ] Adjust backend pricing models to accommodate new pricing on front end
 - [ ] make an api call to the matterport_task_bot_server from the employee_app once a job has been marked complete to start the ETU process on the event
 - [ ] Initiate Refunds for events that get cancelled and are within the policy time frame for a refund on the front end
