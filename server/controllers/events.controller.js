@@ -2,6 +2,8 @@ const {
   employeeDBClient,
   userExistsSQL,
   createUserSQL,
+  deleteEventSQL,
+  deleteCustomerEventSQL,
   createEventSQL,
   customerCancelEventSQL,
   customerRescheduleEventSQL,
@@ -166,9 +168,36 @@ const rescheduleEvent = async (req, res) => {
   }
 }
 
+const deleteCustomerEvent = async (req, res) => {
+  try {
+    const {
+      eventId,
+      customerId: customer_id,
+    } = req.body;
+
+    await employeeDBClient.query(deleteCustomerEventSQL({
+      customer_id,
+      eventId,
+    }));
+
+    await employeeDBClient.query(deleteEventSQL({
+      eventId,
+    }));
+
+    res.status(202).send({
+      status: 'deleted',
+    });
+  } catch (e) {
+    res.status(404).send({
+      status: 'error',
+    });
+  }
+}
+
 module.exports = {
   addEvent,
   cancelEvent,
   rescheduleEvent,
   updateEvent,
+  deleteCustomerEvent,
 }

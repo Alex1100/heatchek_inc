@@ -16,6 +16,33 @@ const getCustomerEventsSQL = ({
   WHERE customer_events.customer_id = ${customer_id}
 `;
 
+const getSearchPaginatedCustomerEventsSQL = ({
+  customer_id,
+  eventTourLink,
+  eventLocation,
+  pageNumber,
+}) => `
+SELECT 
+  count(meta.id) as exact_count,
+  actual.*,
+  events.*
+FROM customer_events meta, customer_events actual
+LEFT JOIN events
+ON actual.event_id = events.id
+WHERE 
+  actual.customer_id = ${customer_id}
+AND 
+  lower(events.location) LIKE lower('${eventLocation}%')
+OR 
+  actual.customer_id = ${customer_id}
+AND
+  events.tour_link = '${eventTourLink}'
+GROUP BY actual.id, events.id
+ORDER BY events.created_at
+LIMIT 5
+OFFSET ${pageNumber ? pageNumber === 1 ? 0 : (pageNumber - 1) * 5 : 0}
+`;
+
 const getPaginatedCustomerEventsSQL = ({
   customer_id,
   pageNumber,
@@ -77,6 +104,15 @@ WHERE customer_events.customer_id = ${customer_id}
 AND cancelled = true
 `;
 
+const deleteCustomerEventSQL = ({
+  eventId,
+  customer_id,
+}) => `
+  DELETE FROM customer_events
+  WHERE customer_id = ${customer_id}
+  AND event_id = ${eventId}
+`;
+
 
 module.exports = {
   createCustomerEventSQL,
@@ -86,4 +122,6 @@ module.exports = {
   getResolvedCustomerEventsSQL,
   getCancelledCustomerEventsSQL,
   getPaginatedCustomerEventsSQL,
+  getSearchPaginatedCustomerEventsSQL,
+  deleteCustomerEventSQL,
 }

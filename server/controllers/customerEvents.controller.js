@@ -6,6 +6,7 @@ const {
   getResolvedCustomerEventsSQL,
   getCancelledCustomerEventsSQL,
   getPaginatedCustomerEventsSQL,
+  getSearchPaginatedCustomerEventsSQL,
 } = require('../../database');
 
 const customerEventList = async (req, res) => {
@@ -47,6 +48,59 @@ const customerEventList = async (req, res) => {
     });
   } catch (error) {
     console.log('ERROR FETCHING CUSTOMER EVENTS: ', error);
+    res.status(403).send({
+      customerEvents: null,
+      error,
+    })
+  }
+};
+
+const searchCustomerEvents = (req, res) => {
+  try {
+    const {
+      customerId: customer_id,
+      eventTourLink = '',
+      eventLocation = '',
+      pageNumber = 0,
+    } = req.query;
+
+    console.log('PAGE NUMBER IS: ', pageNumber);
+
+    if (!customer_id) {
+      throw new Error('Must include customer id');
+    }
+    let customerEvents;
+
+    console.log('SQL QUERY GENERATED IS: ', getSearchPaginatedCustomerEventsSQL({
+      customer_id,
+      pageNumber,
+      eventTourLink,
+      eventLocation,
+    }));
+
+    customerEvents = await employeeDBClient.query(getSearchPaginatedCustomerEventsSQL({
+      customer_id,
+      pageNumber,
+      eventTourLink,
+      eventLocation,
+    }));
+
+    res.status(200).send({
+      customerEvents: customerEvents.rows,
+    });
+
+  } catch (error) {
+    console.log(
+      'ERROR SEARCHING AND FETCHING CUSTOMER EVENTS: ',
+      error,
+      '\n\n\nSEARCH QUERY:\n',
+      {
+        location: req.query.eventLocation,
+        tourLink: req.query.eventTourLink,
+        customerId: req.query.customerId,
+        page: req.query.pageNumber,
+      },
+    );
     res.status(403).send({
       customerEvents: null,
       error,

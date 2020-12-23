@@ -21,6 +21,12 @@ const updateEventNotes =({ event_id, event_additional_details }) => `
   RETURNING *
 `;
 
+const deleteEventSQL = ({
+  eventId,
+}) => `
+  DELETE FROM EVENTS WHERE id = ${eventId}
+`;
+
 const customerCancelEventSQL = ({
   eventId,
   cancelReason,
@@ -79,4 +85,5 @@ module.exports = {
   updateEventPaid,
   updateEventNotes,
   getEventById,
+  deleteEventSQL,
 }

@@ -18,6 +18,8 @@ const {
   cancelledCustomerEventList,
   editCustomerInfo,
   updateEvent,
+  deleteCustomerEvent,
+  getSearchPaginatedCustomerEventsSQL,
 } = require('../controllers');
 
 const {
@@ -73,6 +75,8 @@ router.post('/subscribe-to-webhook', subscribeToWebhooks);
 router.put('/cancel-event', cancelEvent);
 router.put('/update-event', updateEvent);
 
+router.delete('/event', deleteCustomerEvent);
+
 /**
  * Users
  */
@@ -83,6 +87,7 @@ router.get('/employee/:employeeId/jobs/active', activeEmployeeJobList);
 router.get('/employee/:employeeId/jobs/resolved', resolvedEmployeeJobList);
 router.get('/employee/:employeeId/jobs/cancelled', cancelledEmployeeJobList);
 router.get('/customer/:customerId/events', customerEventList);
+router.get('/search/customer-events', getSearchPaginatedCustomerEventsSQL);
 router.get('/customer/:customerId/events/:eventId', customerEvent);
 router.get('/customer/:customerId/events/:eventId/active', activeCustomerEventList);
 router.get('/customer/:customerId/events/:eventId/resolved', resolvedCustomerEventList);
