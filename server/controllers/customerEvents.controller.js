@@ -55,7 +55,7 @@ const customerEventList = async (req, res) => {
   }
 };
 
-const searchCustomerEvents = (req, res) => {
+const searchCustomerEvents = async (req, res) => {
   try {
     const {
       customerId: customer_id,
@@ -206,4 +206,5 @@ module.exports = {
   activeCustomerEventList,
   resolvedCustomerEventList,
   cancelledCustomerEventList,
+  searchCustomerEvents,
 }

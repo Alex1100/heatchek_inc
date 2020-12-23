@@ -19,7 +19,7 @@ const {
   editCustomerInfo,
   updateEvent,
   deleteCustomerEvent,
-  getSearchPaginatedCustomerEventsSQL,
+  searchCustomerEvents,
 } = require('../controllers');
 
 const {
@@ -87,7 +87,7 @@ router.get('/employee/:employeeId/jobs/active', activeEmployeeJobList);
 router.get('/employee/:employeeId/jobs/resolved', resolvedEmployeeJobList);
 router.get('/employee/:employeeId/jobs/cancelled', cancelledEmployeeJobList);
 router.get('/customer/:customerId/events', customerEventList);
-router.get('/search/customer-events', getSearchPaginatedCustomerEventsSQL);
+router.get('/search/customer-events', searchCustomerEvents);
 router.get('/customer/:customerId/events/:eventId', customerEvent);
 router.get('/customer/:customerId/events/:eventId/active', activeCustomerEventList);
 router.get('/customer/:customerId/events/:eventId/resolved', resolvedCustomerEventList);
