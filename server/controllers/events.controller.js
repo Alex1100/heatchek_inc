@@ -174,14 +174,10 @@ const rescheduleEvent = async (req, res) => {
 
 const deleteCustomerEvent = async (req, res) => {
   try {
-    // const {
-    //   eventId,
-    //   customerId: customer_id,
-    // } = req.body;
     const {
       eventId,
       customerId: customer_id,
-    } = req.query;
+    } = req.body;
 
     console.log('REQ BODY IS: ', {
       eventId,
