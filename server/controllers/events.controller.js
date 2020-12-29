@@ -95,7 +95,7 @@ const addEvent = async (req, res) => {
     });
   } catch (e) {
     console.log('EVENT START: ', e.message)
-    res.status(401).json({error: `That date is not available`});
+    res.status(404).json({error: `That date is not available`});
   }
 };
 
