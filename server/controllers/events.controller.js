@@ -177,7 +177,7 @@ const deleteCustomerEvent = async (req, res) => {
     const {
       eventId,
       customerId: customer_id,
-    } = req.body;
+    } = req.params;
 
     console.log('REQ BODY IS: ', {
       eventId,
@@ -191,7 +191,7 @@ const deleteCustomerEvent = async (req, res) => {
     await employeeDBClient.query(deleteEventSQL({
       eventId,
     }));
-    console.log('GREATE SUCCESSS');
+    console.log('GREAT SUCCESSS');
     res.status(202).send({
       status: 'deleted',
     });

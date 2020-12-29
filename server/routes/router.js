@@ -75,7 +75,7 @@ router.post('/subscribe-to-webhook', subscribeToWebhooks);
 router.put('/cancel-event', cancelEvent);
 router.put('/update-event', updateEvent);
 
-router.delete('/event', deleteCustomerEvent);
+router.delete('/customers/:customerId/events/:eventId', deleteCustomerEvent);
 
 /**
  * Users
