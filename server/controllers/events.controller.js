@@ -76,6 +76,7 @@ const addEvent = async (req, res) => {
 
     if (overlappingDates.rows.length) {
       // return error here that the selected event date + time is currently not available
+      console.log('LANDS HERE IN OVERLAPPING');
       throw new Error({message: `That date is not available.`});
     }
 
