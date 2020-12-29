@@ -80,10 +80,12 @@ const addEvent = async (req, res) => {
     }
 
     const createdEvent = await employeeDBClient.query(createEventSQL(eventArgs));
+    console.log('CREATED EVENT IS: ', createdEvent);
     const customerEvent = await employeeDBClient.query(createCustomerEventSQL({
       customer_id: createdCustomer.rows[0].id,
       event_id: createdEvent.rows[0].id,
     }));
+    console.log('CUSTOMER EVENT IS: ', customerEvent);
     res.status(201).send({
       customerEvent: customerEvent.rows[0],
       serviceDetails: businessEventVariants[packageType][packageVariant],
