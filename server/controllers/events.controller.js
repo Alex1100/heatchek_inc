@@ -90,7 +90,7 @@ const addEvent = async (req, res) => {
       packageVariant,
     });
   } catch (e) {
-    console.log('EVENT START: ', e)
+    console.log('EVENT START: ', JSON.stringify(e))
     res.status(401).send({error: `That date is not available`});
   }
 };
