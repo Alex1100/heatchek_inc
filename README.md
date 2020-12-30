@@ -11,7 +11,7 @@
 - [ ] Need to be able to complete / mark jobs as completed, ignored, or cancelled
 - [ ] Push notifications for when a job is assigned to an employee
 - [ ] Component to view job details aka (location of house, square footage, expected earnings, etc...)
-
+- [ ] make an api call to the matterport_task_bot_server from the employee_app once a job has been marked complete to start the ETU process on the event
 
 # Employee Application Nice to Have
 - [ ] Notify when an employee has arrived at the job site, to have the system send an automated phone call or text message to the broker/owner
@@ -105,8 +105,8 @@
   a. Flat pricing to accomodate both residential and commercial
 - [X] UX around pricing could be better placed on main page by sections this way I could keep the pricing model for residential, strictly for residential and come up with a simpler solution for commercial
 - [X] Add search functionality on customer events
-- [ ] Adjust backend pricing models to accommodate new pricing on front end
-- [ ] make an api call to the matterport_task_bot_server from the employee_app once a job has been marked complete to start the ETU process on the event
+- [X] Add Pagination to state within MySchedulePage component
+- [X] Adjust backend pricing models to accommodate new pricing on front end
 - [ ] Initiate Refunds for events that get cancelled and are within the policy time frame for a refund on the front end
 - [ ] Charge and reuse the Scheduler component to reschedule an event
 - [ ] Use AWS S3 to store business / agents logos
@@ -114,5 +114,4 @@
 
 
 # Client Application Nice to Have
- - [X] Add Pagination to state within MySchedulePage component
  - [ ] Add ACH payment integration via stripe and plaid

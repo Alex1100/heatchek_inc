@@ -31,12 +31,21 @@ const addEvent = async (req, res) => {
       packageType,
       packageVariant,
       serviceLocation,
+      numberOfUnitTypes = 0,
+      numberOfDesiredPhotos = 0,
+      numberOfDesiredVideos = 0,
+      numberOfFloors = 0,
       additionalDetails,
       selectedDate,
       selectedTimeOfService,
     } = req.body;
 
-    const duration = (businessEventVariants[packageType][packageVariant].eventDuration * 3600 * 1000) || 0;
+    const duration = (businessEventVariants({
+      numberOfUnitTypes,
+      numberOfDesiredPhotos,
+      numberOfDesiredVideos,
+      numberOfFloors
+    })[packageType][packageVariant].eventDuration * 3600 * 1000) || 0;
     const customerArgs = {
       first_name: firstName,
       last_name: lastName,
@@ -89,7 +98,12 @@ const addEvent = async (req, res) => {
     console.log('CUSTOMER EVENT IS: ', customerEvent);
     res.status(201).send({
       customerEvent: customerEvent.rows[0],
-      serviceDetails: businessEventVariants[packageType][packageVariant],
+      serviceDetails: businessEventVariants({
+        numberOfUnitTypes,
+        numberOfDesiredPhotos,
+        numberOfDesiredVideos,
+        numberOfFloors
+      })[packageType][packageVariant],
       packageType,
       packageVariant,
     });

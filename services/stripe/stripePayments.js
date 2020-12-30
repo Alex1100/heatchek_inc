@@ -41,25 +41,39 @@ const pay = async (request, response) => {
     const {
       customer_id,
       event_id,
+      numberOfUnitTypes = 0,
+      numberOfDesiredPhotos = 0,
+      numberOfDesiredVideos = 0,
+      numberOfFloors = 0,
+      packageType,
+      packageVariant,
+      payment_method_id,
+      payment_intent_id
     } = request.body;
+
     const fetchedCustomer = await employeeDBClient.query(getCustomerByIdSQL({customerId: customer_id}));
 
     if (!fetchedCustomer) {
       throw new Error('Unable to make a payment for a customer that is not in our system.')
     }
     const customer = fetchedCustomer.rows[0];
-    if (request.body.payment_method_id) {
+    if (payment_method_id) {
       // Create the PaymentIntent
       intent = await stripe.paymentIntents.create({
-        amount: (businessEventVariants[request.body.packageType][request.body.packageVariant].serviceFee || 450) * 100,
+        amount: (businessEventVariants({
+          numberOfUnitTypes,
+          numberOfDesiredPhotos,
+          numberOfDesiredVideos,
+          numberOfFloors
+        })[packageType][packageVariant].serviceFee || 450) * 100,
         currency: 'usd',
         confirm: true,
-        payment_method: request.body.payment_method_id,
+        payment_method: payment_method_id,
         confirmation_method: 'manual',
         use_stripe_sdk: true
       });
-    } else if (request.body.payment_intent_id) {
-      intent = await stripe.paymentIntents.confirm(request.body.payment_intent_id);
+    } else if (payment_intent_id) {
+      intent = await stripe.paymentIntents.confirm(payment_intent_id);
     }
     // Send the response to the client
     return generateResponse(response, intent, { customer, event_id });
