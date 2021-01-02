@@ -15,20 +15,14 @@ const customerEventByAddress = async (req, res) => {
     const {
       eventLocation,
     } = req.params;
-    console.log('EVENT LOCATION IS: ', eventLocation);
 
     if (!eventLocation) {
       throw new Error('Must include location\'s address');
     }
 
-    console.log('QUERY IS: ', getCustomerEventByAddressSQL({
-      eventLocation,
-    }));
     const customerEvent = await employeeDBClient.query(getCustomerEventByAddressSQL({
       eventLocation,
     }));
-
-    console.log('CUSTOER EVENGT IS: ', customerEvent);
 
     res.status(200).send({
       existingCustomerEvent: customerEvent,
