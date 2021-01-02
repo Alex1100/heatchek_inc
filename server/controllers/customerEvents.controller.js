@@ -25,7 +25,7 @@ const customerEventByAddress = async (req, res) => {
     }));
 
     res.status(200).send({
-      existingCustomerEvent: customerEvent,
+      existingCustomerEvent: customerEvent.rows[0],
     });
   } catch (error) {
     res.status(404).send({
