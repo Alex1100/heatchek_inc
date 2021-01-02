@@ -7,6 +7,7 @@ const {
   getCancelledCustomerEventsSQL,
   getPaginatedCustomerEventsSQL,
   getSearchPaginatedCustomerEventsSQL,
+  getCustomerEventByAddressSQL,
 } = require('../../database');
 
 const customerEventByAddress = async (req, res) => {
@@ -19,6 +20,10 @@ const customerEventByAddress = async (req, res) => {
     if (!eventLocation) {
       throw new Error('Must include location\'s address');
     }
+
+    console.log('QUERY IS: ', getCustomerEventByAddressSQL({
+      eventLocation,
+    }));
     const customerEvent = await employeeDBClient.query(getCustomerEventByAddressSQL({
       eventLocation,
     }));
