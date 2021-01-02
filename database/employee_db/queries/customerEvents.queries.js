@@ -22,7 +22,7 @@ const getCustomerEventByAddressSQL = ({
   SELECT * FROM customer_events
   LEFT JOIN events
   ON customer_events.event_id = events.id
-  WHERE customer_events.location = '${eventLocation}'
+  WHERE events.location = '${eventLocation}'
 `;
 
 const getSearchPaginatedCustomerEventsSQL = ({
