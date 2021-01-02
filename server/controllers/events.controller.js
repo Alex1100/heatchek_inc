@@ -118,12 +118,51 @@ const updateEvent = async (req, res) => {
     const {
       eventId,
       eventAdditionalDetails,
+      selectedDate,
+      firstName,
+      lastName,
+      mobileNumber,
+      email,
+      selectedTimeOfService,
+      businessName,
+      additionalDetails,
+      packageType,
+      packageVariant,
+      serviceLocation,
+      numberOfFloors,
+      numberOfDesiredPhotos,
+      numberOfDesiredVideos,
+      numberOfUnitTypes,
     } = req.body;
-
-    await employeeDBClient.query(updateEventNotes({
+    const fieldsToUpdate = {
       event_id: eventId,
-      event_additional_details: eventAdditionalDetails,
-    }));
+      event_additional_details: eventAdditionalDetails || additionalDetails,
+    };
+
+    const possibleFields = [
+      ['packageType', packageType],
+      ['packageVariant', packageVariant],
+      ['serviceLocation', serviceLocation],
+      ['numberOfFloors', numberOfFloors],
+      ['numberOfDesiredPhotos', numberOfDesiredPhotos],
+      ['numberOfDesiredVideos', numberOfDesiredVideos],
+      ['numberOfUnitTypes', numberOfUnitTypes],
+      ['selectedDate', selectedDate],
+      ['firstName', firstName],
+      ['lastName', lastName],
+      ['mobileNumber', mobileNumber],
+      ['email', email],
+      ['selectedTimeOfService', selectedTimeOfService],
+      ['businessName', businessName],
+    ];
+
+    for (let field of possibleFields) {
+      if (field[1] !== undefined && field[1] !== null) {
+        fieldsToUpdate[field[0]] = field[1];
+      }
+    }
+
+    await employeeDBClient.query(updateEventFields(fieldsToUpdate));
 
     const updatedEvent = await employeeDBClient.query(getEventById({ eventId }));
 

@@ -12,6 +12,8 @@
 - [ ] Push notifications for when a job is assigned to an employee
 - [ ] Component to view job details aka (location of house, square footage, expected earnings, etc...)
 - [ ] make an api call to the matterport_task_bot_server from the employee_app once a job has been marked complete to start the ETU process on the event
+- [ ] As the Remote Pilot in Control, I must include current observed weather conditions for the drone operator. Must include that information via a 3rd party api request and render it on the react/react-native app
+- [ ] Must also include digital copies of the Remote Pilot in Control's Remote Pilot Certificate, Aircraft Registration, and Certificate of Waiver (if applicable)
 
 # Employee Application Nice to Have
 - [ ] Notify when an employee has arrived at the job site, to have the system send an automated phone call or text message to the broker/owner

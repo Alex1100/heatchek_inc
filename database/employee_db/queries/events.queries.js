@@ -21,6 +21,15 @@ const updateEventNotes =({ event_id, event_additional_details }) => `
   RETURNING *
 `;
 
+const updateEventFields = ({event_id, event_additional_details, ...remainingKeys}) => {
+  let query = `UPDATE events SET event_additional_details = '${event_additional_details}'`;
+  for (let key in remainingKeys) {
+    query += ` AND ${key} = ${typeof remainingKeys[key] === 'string' ? `'${remainingKeys[key]}'` : remainingKeys[key]}`;
+  }
+  query += ` WHERE id = ${event_id}`;
+  return query;
+}
+
 const deleteEventSQL = ({
   eventId,
 }) => `
@@ -86,4 +95,5 @@ module.exports = {
   updateEventNotes,
   getEventById,
   deleteEventSQL,
+  updateEventFields,
 }

@@ -16,6 +16,15 @@ const getCustomerEventsSQL = ({
   WHERE customer_events.customer_id = ${customer_id}
 `;
 
+const getCustomerEventByAddressSQL = ({
+  eventLocation,
+}) => `
+  SELECT * FROM customer_events
+  LEFT JOIN events
+  ON customer_events.event_id = events.id
+  WHERE customer_events.location = '${eventLocation}'
+`;
+
 const getSearchPaginatedCustomerEventsSQL = ({
   customer_id,
   eventTourLink,
@@ -124,4 +133,5 @@ module.exports = {
   getPaginatedCustomerEventsSQL,
   getSearchPaginatedCustomerEventsSQL,
   deleteCustomerEventSQL,
+  getCustomerEventByAddressSQL,
 }

@@ -20,6 +20,7 @@ const {
   updateEvent,
   deleteCustomerEvent,
   searchCustomerEvents,
+  customerEventByAddress,
 } = require('../controllers');
 
 const {
@@ -70,6 +71,9 @@ router.post('/sms-login', smsLogin);
 /**
  * EVENTS / JOBS
 */
+
+router.get('/events/:eventLocation', customerEventByAddress);
+
 router.post('/add-event', addEvent);
 router.post('/subscribe-to-webhook', subscribeToWebhooks);
 router.put('/cancel-event', cancelEvent);

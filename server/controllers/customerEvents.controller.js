@@ -9,6 +9,29 @@ const {
   getSearchPaginatedCustomerEventsSQL,
 } = require('../../database');
 
+const customerEventByAddress = async (req, res) => {
+  try {
+    const {
+      eventLocation,
+    } = req.params;
+
+    if (!eventLocation) {
+      throw new Error('Must include location\'s address');
+    }
+    const customerEvent = await employeeDBClient.query(getCustomerEventByAddressSQL({
+      eventLocation,
+    }));
+
+    res.status(200).send({
+      existingCustomerEvent: customerEvent,
+    });
+  } catch (error) {
+    res.status(404).send({
+      existingCustomerEvent: null,
+    });
+  }
+}
+
 const customerEventList = async (req, res) => {
   try {
     const {
@@ -201,6 +224,7 @@ const cancelledCustomerEventList = async (req, res) => {
 };
 
 module.exports = {
+  customerEventByAddress,
   customerEventList,
   customerEvent,
   activeCustomerEventList,
