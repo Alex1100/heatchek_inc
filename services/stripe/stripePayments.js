@@ -100,7 +100,7 @@ const refund = async (req, res) => {
     } = req.body;
 
     const eventToRefund = await employeeDBClient.query(getEventById({
-      event_id: eventId,
+      eventId,
     }));
 
     console.log('event to refund is: ', eventToRefund.rows[0]);
