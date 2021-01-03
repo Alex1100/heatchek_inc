@@ -99,9 +99,13 @@ const refund = async (req, res) => {
       event_id: eventId,
     }));
 
+    console.log('event to refund is: ', eventToRefund.rows[0]);
+
     const refund = await stripe.refunds.create({
       payment_intent: eventToRefund.rows[0].paymentIntent,
     });
+
+    console.log('REFUND IS: ', refund);
 
     res.status(201).send({ refund });
   } catch (e) {

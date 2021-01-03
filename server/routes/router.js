@@ -38,6 +38,7 @@ const {
   smsLogin,
   testSmsLogin,
   pay,
+  refund,
 } = require('../../services');
 
 const serviceInjector = (service) => (req, res, next) => {
@@ -111,7 +112,7 @@ router.get('/auth/complete/calendly', calendlyOauth);
  * PAYMENTS
  */
 router.post('/pay', pay)
-
+router.post('refund', refund);
 
 /**
  * TEST
