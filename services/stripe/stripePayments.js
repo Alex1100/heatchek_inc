@@ -109,6 +109,7 @@ const refund = async (req, res) => {
 
     res.status(201).send({ refund });
   } catch (e) {
+    console.log('ERROR IS: ', e);
     res.status(400).send({ error: e });
   }
 }
