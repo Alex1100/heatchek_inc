@@ -1,4 +1,7 @@
 const path = require('path');
+const {
+  getEventById,
+} = require('../../database');
 
 require('dotenv').config({path: path.join(__dirname, '../config/.env')});
 const stripeLib = require('stripe');
@@ -95,7 +98,7 @@ const refund = async (req, res) => {
       eventId,
     } = req.body;
 
-    const eventToRefund = await employeeDBClient.query(getEvent({
+    const eventToRefund = await employeeDBClient.query(getEventById({
       event_id: eventId,
     }));
 
