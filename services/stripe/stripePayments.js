@@ -94,6 +94,7 @@ const pay = async (request, response) => {
 
 const refund = async (req, res) => {
   try {
+    console.log('REQ BODY: ', req.body.eventId || 'none exists');
     const {
       eventId,
     } = req.body;
