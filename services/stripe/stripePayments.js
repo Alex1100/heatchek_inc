@@ -2,6 +2,7 @@ const path = require('path');
 const {
   getEventById,
 } = require('../../database');
+const { businessEventVariants } = require('../business_events');
 
 require('dotenv').config({path: path.join(__dirname, '../config/.env')});
 const stripeLib = require('stripe');
@@ -103,9 +104,10 @@ const refund = async (req, res) => {
       eventId,
     }));
 
-    console.log('event to refund is: ', eventToRefund.rows[0]);
-
+    // console.log('event to refund is: ', eventToRefund.rows[0]);
+    console.log('AMOUNT TO REFUND IS: ', businessEventVariants({})[eventToRefund.rows[0].service_type][eventToRefund.rows[0].service_variant].serviceFee);
     const refund = await stripe.refunds.create({
+      amount: businessEventVariants({})[eventToRefund.rows[0].service_type][eventToRefund.rows[0].service_variant].serviceFee,
       payment_intent: eventToRefund.rows[0].paymentIntent,
     });
 
