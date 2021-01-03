@@ -112,7 +112,7 @@ router.get('/auth/complete/calendly', calendlyOauth);
  * PAYMENTS
  */
 router.post('/pay', pay)
-router.post('refund', refund);
+router.post('/refund', refund);
 
 /**
  * TEST
