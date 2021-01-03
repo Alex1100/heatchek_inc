@@ -2,7 +2,6 @@ const path = require('path');
 const {
   getEventById,
 } = require('../../database');
-const { businessEventVariants } = require('../business_events');
 
 require('dotenv').config({path: path.join(__dirname, '../config/.env')});
 const stripeLib = require('stripe');
