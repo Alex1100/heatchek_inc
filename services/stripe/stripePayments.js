@@ -105,6 +105,10 @@ const refund = async (req, res) => {
 
     // console.log('event to refund is: ', eventToRefund.rows[0]);
     console.log('AMOUNT TO REFUND IS: ', businessEventVariants({})[eventToRefund.rows[0].service_type][eventToRefund.rows[0].service_variant].serviceFee);
+    const paymentIntent = await stripe.paymentIntents.retrieve(
+      eventToRefund.rows[0].paymentIntent || '',
+    );
+    console.log('PAYMENT INTENT IS: ', paymentIntent);
     const refund = await stripe.refunds.create({
       amount: (businessEventVariants({})[eventToRefund.rows[0].service_type][eventToRefund.rows[0].service_variant].serviceFee || 450) * 100,
       payment_intent: eventToRefund.rows[0].paymentIntent,
