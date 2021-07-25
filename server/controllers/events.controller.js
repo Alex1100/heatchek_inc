@@ -65,7 +65,7 @@ const addEvent = async (req, res) => {
     const event_end = (new Date(`${selectedDate} ${selectedTimeOfService}`).getTime() + duration) / 1000;
   
     const eventArgs = {
-      columns: `service_type, service_variant, duration, location, client_phone_number, event_additional_details, start_time, end_time`,
+      columns: `service_type, duration, location, client_phone_number, event_additional_details, start_time, end_time`,
       values: `
         '${packageType}',
         ${duration},
