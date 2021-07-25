@@ -49,7 +49,6 @@ const pay = async (request, response) => {
       numberOfDesiredVideos = 0,
       numberOfFloors = 0,
       packageType,
-      packageVariant,
       payment_method_id,
       payment_intent_id
     } = request.body;
@@ -68,7 +67,7 @@ const pay = async (request, response) => {
           numberOfDesiredPhotos,
           numberOfDesiredVideos,
           numberOfFloors
-        })[packageType][packageVariant].serviceFee || 450) * 100,
+        })[packageType].serviceFee || 450) * 100,
         currency: 'usd',
         confirm: true,
         payment_method: payment_method_id,

@@ -111,7 +111,6 @@
 - [X] Adjust backend pricing models to accommodate new pricing on front end
 - [X] Initiate Refunds for events that get cancelled and are within the policy time frame for a refund on the front end
 - [ ] Double check on the server side if a refund is in a valid date range
-- [ ] Charge and reuse the Scheduler component to reschedule an event
 - [ ] Use AWS S3 to store business / agents logos
 - [ ] Add custom styles based on Agent's / Brokers / Clients company uploaded logo primary colors
 

@@ -29,7 +29,6 @@ const addEvent = async (req, res) => {
       email,
       businessName,
       packageType,
-      packageVariant,
       serviceLocation,
       numberOfUnitTypes = 0,
       numberOfDesiredPhotos = 0,
@@ -45,7 +44,7 @@ const addEvent = async (req, res) => {
       numberOfDesiredPhotos,
       numberOfDesiredVideos,
       numberOfFloors
-    })[packageType][packageVariant].eventDuration * 3600 * 1000) || 0;
+    })[packageType].eventDuration * 3600 * 1000) || 0;
     const customerArgs = {
       first_name: firstName,
       last_name: lastName,
@@ -55,14 +54,12 @@ const addEvent = async (req, res) => {
     };
     let createdCustomer;
     const existingCustomer = await employeeDBClient.query(getCustomerByEmailSQL({email}))
-    console.log('EXISTING CUSTOMER IS: ', existingCustomer.rows)
+
     if (existingCustomer && existingCustomer.rows && existingCustomer.rows.length) {
       createdCustomer = existingCustomer;
     } else {
       createdCustomer = await employeeDBClient.query(createCustomerSQL(customerArgs));
     }
-
-    console.log('CREATED CUSTOMER IS: ', createdCustomer.rows[0]);
 
     const event_start = new Date(`${selectedDate} ${selectedTimeOfService}`).getTime() / 1000;
     const event_end = (new Date(`${selectedDate} ${selectedTimeOfService}`).getTime() + duration) / 1000;
@@ -71,7 +68,6 @@ const addEvent = async (req, res) => {
       columns: `service_type, service_variant, duration, location, client_phone_number, event_additional_details, start_time, end_time`,
       values: `
         '${packageType}',
-        '${packageVariant}',
         ${duration},
         '${serviceLocation}',
         '${mobileNumber}',
@@ -79,7 +75,6 @@ const addEvent = async (req, res) => {
         to_timestamp(${event_start}),
         to_timestamp(${event_end})`,
     };
-    console.log('EVENT PARAMS: ', eventArgs);
 
     const overlappingDates = await employeeDBClient.query(eventOverlappingSQL({event_start, event_end}));
 
@@ -103,9 +98,8 @@ const addEvent = async (req, res) => {
         numberOfDesiredPhotos,
         numberOfDesiredVideos,
         numberOfFloors
-      })[packageType][packageVariant],
+      })[packageType],
       packageType,
-      packageVariant,
     });
   } catch (e) {
     console.log('EVENT START: ', e.message)
@@ -127,7 +121,6 @@ const updateEvent = async (req, res) => {
       businessName,
       additionalDetails,
       packageType,
-      packageVariant,
       serviceLocation,
       numberOfFloors,
       numberOfDesiredPhotos,
@@ -141,7 +134,6 @@ const updateEvent = async (req, res) => {
 
     const possibleFields = [
       ['packageType', packageType],
-      ['packageVariant', packageVariant],
       ['serviceLocation', serviceLocation],
       ['numberOfFloors', numberOfFloors],
       ['numberOfDesiredPhotos', numberOfDesiredPhotos],

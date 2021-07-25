@@ -23,7 +23,7 @@ const customerEventByAddress = async (req, res) => {
     const customerEvent = await employeeDBClient.query(getCustomerEventByAddressSQL({
       eventLocation,
     }));
-
+    console.log('CUSTOMER EVENT: ', customerEvent);
     res.status(200).send({
       existingCustomerEvent: customerEvent.rows[0],
     });
