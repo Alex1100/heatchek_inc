@@ -11,12 +11,12 @@ const { businessEventVariants } = require('../business_events');
 const { updateEventPaid, getCustomerEventsSQL, getCustomerByIdSQL, employeeDBClient } = require('../../database');
 const { default: Axios } = require('axios');
 
-// if (process.env.NODE_ENV !== "PROD") {
-// making sure I only use the test account right now
-stripe = stripeLib(process.env.TEST_STRIPE_API_SECRET);
-// } else {
-//   stripe = stripeLib(process.env.LIVE_STRIPE_PRIVATE_KEY);
-// }
+if (process.env.NODE_ENV !== "PROD") {
+  // making sure I only use the test account right now
+  stripe = stripeLib(process.env.TEST_STRIPE_API_SECRET);
+} else {
+  stripe = stripeLib(process.env.LIVE_STRIPE_PRIVATE_KEY);
+}
 
 async function generateResponse(response, intent, customerData) {
   if (intent.status === 'succeeded') {
