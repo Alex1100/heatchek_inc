@@ -8,7 +8,7 @@ const cors = require('cors')
 const debug = require('debug')('app:http');
 const session = require('express-session');
 require('dotenv').config({path: path.join(__dirname, '../config/.env')});
-
+console.log('PROCESS ENV VARIABLES ARE: ', process.env);
 const routes = require('./routes/router');
 const app = express();
 app.use(cors({ origin: '*', optionsSuccessStatus: 200 }))
